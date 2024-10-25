@@ -13,10 +13,7 @@ public class Cliente {
     private String correo;
     private String sexo;
     private String nivel; // normal, plata, oro
-    private Casillero casillero;
     private List<Articulo> articulosRecibidos;
-    private List<Articulo> articulosEntregados;
-    private List<Articulo> articulosPendientes;
     
     /**
      * Constructor que inicializa los atributos del cliente.
@@ -26,42 +23,19 @@ public class Cliente {
      * @param telefono del cliente.
      * @param correo del cliente.
      * @param sexo del cliente.
-     * @param casillero asignado al cliente.
      * @param nivel del cliente.
      */
 
-    public Cliente(String nombre, int idCliente, String telefono, String correo, String sexo, Casillero casillero, String nivel) {
+    public Cliente(String nombre, int idCliente, String telefono, String correo, String sexo, String nivel) {
         this.nombre = nombre;
         this.idCliente = idCliente;
         this.telefono = telefono;
         this.correo = correo;
         this.sexo = sexo;
-        this.casillero = casillero;
         this.nivel = nivel; // nivel inicial
         this.articulosRecibidos = new ArrayList<>();
-        this.articulosEntregados = new ArrayList<>();
-        this.articulosPendientes = new ArrayList<>();
     }
-    /**
-     * 
-     * Consulta el estado del casillero.
-     *
-     * @param casillero.
-     * @return Estado del casillero.
-     */   
-    public String consultarCasilleroNum(Casillero casillero) {
-        return casillero.estadoCasillero(casillero);
-    }
-    /**
-     * 
-     * Consulta el estado del casillero por ID del cliente.
-     *
-     * @param idCliente.
-     * @return Estado del casillero.
-     */    
-    public String consultarCasilleroId(int idCliente) {
-        return casillero.estadoId(idCliente);
-    }
+    
     /**
      * 
      * Sube el nivel del cliente dependiendo de la cantidad de artículos recibidos.
@@ -90,38 +64,9 @@ public class Cliente {
     public void agregarArticuloRecibido(Articulo articulo) {
         articulosRecibidos.add(articulo);
     }
-    /**
-     * 
-     * Agrega un artículo a la lista de artículos pendientes.
-     *
-     * @param articulo.
-     */
-    public void agregarArticuloPendiente(Articulo articulo) {
-        articulosPendientes.add(articulo);
-    }
-    /**
-     * 
-     * Agrega un artículo a la lista de artículos entregados.
-     * 
-     * Elimina el artículo de la lista de artículos pendientes.
-     *
-     * @param articulo.
-     */
-    public void agregarArticuloEntregado(Articulo articulo) {
-        articulosEntregados.add(articulo);
-        articulosPendientes.remove(articulo); // Quitar de pendientes si fue entregado
-    }
     
     public List<Articulo> getArticulosRecibidos() {
         return articulosRecibidos;
-    }
-
-    public List<Articulo> getArticulosEntregados() {
-        return articulosEntregados;
-    }
-
-    public List<Articulo> getArticulosPendientes() {
-        return articulosPendientes;
     }
     
     public String getNombre() {
@@ -134,14 +79,6 @@ public class Cliente {
 
     public String getNivel() {
         return nivel;
-    }
-
-    public void setCasillero(Casillero casillero) {
-        this.casillero = casillero;
-    }
-    
-    public Casillero getCasillero() {
-        return casillero;
     }
 
     public void setNivel(String nivel) {

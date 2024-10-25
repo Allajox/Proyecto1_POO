@@ -26,7 +26,7 @@ public class main {
         
         // Crea un cliente, lo agrega al counter y lo asigna a un casillero
         Cliente cliente1 = new Cliente("Allan", 231, "8927-1832", "allanj@gmail.com", "Hombre", casillero, "Normal");
-        counter.agregarCliente(cliente1);
+        counter.registarCliente(cliente1);
 
         Cliente cliente2 = new Cliente("Sara", 233, "2193-3123", "sara@gmail.com", "Mujer", casillero2, "Normal");
         counter.agregarCliente(cliente2);
