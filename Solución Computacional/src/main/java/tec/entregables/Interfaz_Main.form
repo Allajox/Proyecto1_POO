@@ -269,7 +269,11 @@
                         <Component class="javax.swing.JSpinner" name="SpinnerTamCounter">
                           <Properties>
                             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                              <SpinnerModel initial="0" maximum="50" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                              <SpinnerModel initial="1" maximum="50" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                            </Property>
+                            <Property name="toolTipText" type="java.lang.String" value=""/>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Default Cursor"/>
                             </Property>
                           </Properties>
                         </Component>
@@ -367,12 +371,12 @@
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="btnConsultar" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jLabel18" min="-2" pref="86" max="-2" attributes="0"/>
+                                          <Component id="LabelConsulta" min="-2" pref="86" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                   <Component id="lblResConsulta" min="-2" pref="124" max="-2" attributes="0"/>
-                                  <EmptySpace pref="616" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -389,7 +393,7 @@
                                               <Component id="txtConsulta" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                          <Component id="LabelConsulta" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
@@ -399,7 +403,7 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel23" min="-2" pref="42" max="-2" attributes="0"/>
-                                  <EmptySpace pref="329" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -415,7 +419,7 @@
                             <Property name="text" type="java.lang.String" value="Numero de casillero:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel18">
+                        <Component class="javax.swing.JLabel" name="LabelConsulta">
                           <Properties>
                             <Property name="text" type="java.lang.String" value=" "/>
                           </Properties>
@@ -457,15 +461,10 @@
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="1" attributes="0">
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Group type="102" attributes="0">
-                                                          <Component id="CheckMasculino" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace max="32767" attributes="0"/>
-                                                          <Component id="CheckFemenino" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Component id="TextoDireccion" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="255" max="-2" attributes="0"/>
+                                                  <Component id="CheckMasculino" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="CheckFemenino" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -480,11 +479,12 @@
                                                           <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                                                           <Component id="TextoTelefono" pref="160" max="32767" attributes="0"/>
                                                       </Group>
+                                                      <Component id="TextoDireccion" alignment="0" min="-2" pref="159" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace pref="531" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
@@ -497,13 +497,13 @@
                                                   <Component id="jDateChooser1" min="-2" pref="180" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="BotonNuevoCliente" min="-2" pref="84" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
                                                   <Component id="lblBotonCliente" min="-2" pref="217" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="LabelNuevoCliente" min="-2" pref="291" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace min="0" pref="130" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -550,7 +550,7 @@
                                       </Group>
                                       <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="63" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -676,7 +676,7 @@
                                           <Component id="jTextField5" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="848" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -691,7 +691,7 @@
                                   <Component id="jTextField5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="343" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -933,7 +933,7 @@
                                                   <Component id="LabelErrorPaquete" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace min="0" pref="399" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="402" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1161,7 +1161,7 @@
                                           <Component id="jTextField6" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="801" max="32767" attributes="0"/>
+                                  <EmptySpace pref="804" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>

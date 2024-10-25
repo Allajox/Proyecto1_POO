@@ -60,7 +60,7 @@ public class Counter {
      * @return true si el cliente fue registrado exitosamente, false si hubo errores.
      * @throws Exception si ocurre un error en el registro.
      */
-    public boolean registrarCliente(String nombre, int idCliente, String telefono, String correo, String sexo, Casillero casillero, String nivel) throws Exception {
+    public boolean registrarCliente(String nombre, int idCliente, String telefono, String correo, boolean sexo, Casillero casillero, String nivel) throws Exception {
         if (!Validaciones.validarTelefono(telefono) || !Validaciones.validarCorreo(correo)) {
             return false;
         }
@@ -385,14 +385,6 @@ public class Counter {
 
     public void setCliente(String cliente) {
         this.cliente = cliente;
-    }
-
-    public Casillero getCasillero() {
-        return casillero;
-    }
-
-    public void setCasillero(Casillero casillero) {
-        this.casillero = casillero;
     }
 
     public int getCantidadCasilleros() {

@@ -13,7 +13,9 @@ import static java.lang.Integer.parseInt;
  */
 public class Interfaz_Main extends javax.swing.JFrame {
     private Counter miCounter;
-
+    private Cliente miCliente;
+    private Casillero miCasillero;
+    private Articulo MiArticulo;
     /**
      * Creates new form JFrame_Main
      */
@@ -54,7 +56,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
         jPanel14 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        LabelConsulta = new javax.swing.JLabel();
         btnConsultar = new javax.swing.JButton();
         txtConsulta = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
@@ -157,7 +159,9 @@ public class Interfaz_Main extends javax.swing.JFrame {
 
         jLabel15.setText("Tamaño del Counter:");
 
-        SpinnerTamCounter.setModel(new javax.swing.SpinnerNumberModel(0, 0, 50, 1));
+        SpinnerTamCounter.setModel(new javax.swing.SpinnerNumberModel(1, 1, 50, 1));
+        SpinnerTamCounter.setToolTipText("");
+        SpinnerTamCounter.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         botonCounter.setText("Crear");
         botonCounter.addActionListener(new java.awt.event.ActionListener() {
@@ -248,7 +252,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
 
         jLabel17.setText("Numero de casillero:");
 
-        jLabel18.setText(" ");
+        LabelConsulta.setText(" ");
 
         btnConsultar.setText("Consultar");
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -279,10 +283,10 @@ public class Interfaz_Main extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
                         .addComponent(btnConsultar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(LabelConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26)
                 .addComponent(lblResConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(616, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,14 +300,14 @@ public class Interfaz_Main extends javax.swing.JFrame {
                             .addComponent(lblResConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtConsulta))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel18))
+                        .addComponent(LabelConsulta))
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnConsultar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Consultar", jPanel14);
@@ -378,13 +382,10 @@ public class Interfaz_Main extends javax.swing.JFrame {
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel13Layout.createSequentialGroup()
-                                        .addComponent(CheckMasculino)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(CheckFemenino))
-                                    .addComponent(TextoDireccion))
-                                .addGap(255, 255, 255))
+                                .addComponent(CheckMasculino)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CheckFemenino)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10)
@@ -396,9 +397,10 @@ public class Interfaz_Main extends javax.swing.JFrame {
                                         .addComponent(TextoIdCasillero)
                                         .addComponent(TextoCorreo)
                                         .addComponent(jLabel9)
-                                        .addComponent(TextoTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)))
+                                        .addComponent(TextoTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                                    .addComponent(TextoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap(531, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -409,11 +411,11 @@ public class Interfaz_Main extends javax.swing.JFrame {
                                 .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(BotonNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19)
+                                .addGap(184, 184, 184)
                                 .addComponent(lblBotonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(LabelNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 130, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -453,7 +455,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
                         .addComponent(LabelNuevoCliente)
                         .addComponent(lblBotonCliente))
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Nuevo", jPanel13);
@@ -482,7 +484,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
                         .addComponent(jLabel19)
                         .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField5)))
-                .addContainerGap(848, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -495,7 +497,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addContainerGap(343, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Borrar", jPanel15);
@@ -715,7 +717,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
                                 .addComponent(BotonComprobarArticulos)
                                 .addGap(18, 18, 18)
                                 .addComponent(LabelErrorPaquete)))
-                        .addGap(0, 399, Short.MAX_VALUE))))
+                        .addGap(0, 402, Short.MAX_VALUE))))
         );
         PestañaRecepcionLayout.setVerticalGroup(
             PestañaRecepcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -777,7 +779,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
                         .addComponent(jLabel22)
                         .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField6)))
-                .addContainerGap(801, Short.MAX_VALUE))
+                .addContainerGap(804, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -949,12 +951,20 @@ public class Interfaz_Main extends javax.swing.JFrame {
 
     private void BotonComprobarArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonComprobarArticulosActionPerformed
         int TipoPaquete;
+        boolean correcto0 = true;
+        boolean correcto1 = true;
+        boolean correcto2 = true;
+        
         TipoPaquete = SeleccionPaquete.getSelectedIndex();
         if (TipoPaquete == 0){
             if (SeleccionSobre.getSelectedIndex()!=(0|1)){
                 LabelErrorPaquete.setForeground(Color.red);
                 LabelErrorPaquete.setText("Error: Faltan Datos");
                 LabelErrorPaquete.setEnabled(true);
+            }
+            if (correcto0){
+                MiArticulo = new Articulo("Sobre", 2222, "Sobre", String remitente, double peso);
+                agregarArticuloPendiente(Counter miCounter, Articulo articulo, String estadoArticulo);
             }
         } else if (TipoPaquete == 1){
             
@@ -991,7 +1001,18 @@ public class Interfaz_Main extends javax.swing.JFrame {
         if (!Validaciones.validarTelefono(telefono) || !Validaciones.validarCorreo(correo)) {
             lblBotonCliente.setText("Hay un error en el correo o telefono");
         }
-    //miCounter.agregarCliente(cliente);
+        int stoiID = Integer.parseInt(TextoIdCasillero.getText());
+        miCasillero = new Casillero(123,"hola");
+        try{
+            miCounter.registrarCliente(TextoNombre.getText(),stoiID, TextoTelefono.getText()
+            , TextoCorreo.getText(), CheckFemenino.isSelected(), miCasillero, "2");
+            lblBotonCliente.setText("Agregado Correctamente");
+        } catch(Exception e) {
+          
+          lblBotonCliente.setText(e.getMessage());
+          System.out.println(e.getMessage());
+          
+        }   
     }//GEN-LAST:event_BotonNuevoClienteActionPerformed
 
     private void TextoIdCasilleroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoIdCasilleroActionPerformed
@@ -1020,22 +1041,22 @@ public class Interfaz_Main extends javax.swing.JFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         // TODO add your handling code here:
-//        lblResConsulta.setText(""); // Limpia el texto antes de mostrar el resultado
-//        String casilleroConsulta = txtConsulta.getText();
-//    
-//        try {
-//            int numeroCasillero = Integer.parseInt(casilleroConsulta);
-//            String resultado = counter.consultarEstadoCasilleroPorNumero(numeroCasillero);
-//
-//            if (resultado.contains("Libre")) {
-//                lblResConsulta.setText("El casillero está libre.");
-//            } else {
-//                lblResConsulta.setText(resultado);
-//            }
-//
-//        } catch (NumberFormatException e) {
-//            lblResConsulta.setText("Por favor, introduce un número válido.");
-//        }
+        lblResConsulta.setText("");
+        String casilleroConsulta = txtConsulta.getText();
+    
+        try {
+            //int numeroCasillero = Integer.parseInt(casilleroConsulta);
+            //String resultado = miCasillero.getEstado(numeroCasillero);
+
+            //if (resultado.contains("Libre")) {
+            //    lblResConsulta.setText("El casillero está libre.");
+            //} else {
+            //    //lblResConsulta.setText(resultado);
+            //}
+
+        } catch (NumberFormatException e) {
+            lblResConsulta.setText("Por favor, introduce un número válido.");
+        }
         
     }//GEN-LAST:event_btnConsultarActionPerformed
 
@@ -1121,6 +1142,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
     private javax.swing.ButtonGroup GrupoCheckSexo;
     private javax.swing.ButtonGroup GrupoCheckSobre;
     private javax.swing.JLabel LabelBotonCrear;
+    private javax.swing.JLabel LabelConsulta;
     private javax.swing.JLabel LabelErrorPaquete;
     private javax.swing.JLabel LabelNuevoCliente;
     private javax.swing.JLabel LabelPaquete;
@@ -1161,7 +1183,6 @@ public class Interfaz_Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;

@@ -23,7 +23,7 @@ public class main {
         // Crea un casillero
         Casillero casillero = new Casillero(2333, "Libre");
         Casillero casillero2 = new Casillero(1203, "Libre");
-        
+        /*
         // Crea un cliente, lo agrega al counter y lo asigna a un casillero
         Cliente cliente1 = new Cliente("Allan", 231, "8927-1832", "allanj@gmail.com", "Hombre", casillero, "Normal");
         counter.registarCliente(cliente1);
@@ -183,7 +183,8 @@ public class main {
             
         } catch (Exception e) {
             e.printStackTrace();
-        }
+
+        }*/
     }
 }
 

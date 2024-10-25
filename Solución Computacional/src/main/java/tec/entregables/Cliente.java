@@ -11,7 +11,7 @@ public class Cliente {
     private int idCliente;
     private String telefono;
     private String correo;
-    private String sexo;
+    private boolean sexo;
     private String nivel; // normal, plata, oro
     private List<Articulo> articulosRecibidos;
     
@@ -26,7 +26,7 @@ public class Cliente {
      * @param nivel del cliente.
      */
 
-    public Cliente(String nombre, int idCliente, String telefono, String correo, String sexo, String nivel) {
+    public Cliente(String nombre, int idCliente, String telefono, String correo, boolean sexo, String nivel) {
         this.nombre = nombre;
         this.idCliente = idCliente;
         this.telefono = telefono;
@@ -101,11 +101,11 @@ public class Cliente {
         this.correo = correo;
     }
 
-    public String getSexo() {
+    public boolean getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(boolean sexo) {
         this.sexo = sexo;
     }
     
