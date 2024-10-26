@@ -9,7 +9,7 @@ public class Cliente {
     private int idCliente;
     private String telefono;
     private String correo;
-    private String sexo;
+    private boolean sexo;
     private String nivel; // normal, plata, oro;
     
     /**
@@ -20,16 +20,15 @@ public class Cliente {
      * @param telefono del cliente.
      * @param correo del cliente.
      * @param sexo del cliente.
-     * @param nivel del cliente.
      */
 
-    public Cliente(String nombre, int idCliente, String telefono, String correo, String sexo, String nivel) {
+    public Cliente(String nombre, int idCliente, String telefono, String correo, boolean sexo) {
         this.nombre = nombre;
         this.idCliente = idCliente;
         this.telefono = telefono;
         this.correo = correo;
         this.sexo = sexo;
-        this.nivel = nivel; // nivel inicial
+        this.nivel = "Normal"; // nivel inicial
     }
     
     /**
@@ -82,16 +81,18 @@ public class Cliente {
         this.correo = correo;
     }
 
-    public String getSexo() {
+    public boolean getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(boolean sexo) {
         this.sexo = sexo;
     }
-    
+
     @Override
     public String toString() {
-        return nombre + ", ID " + idCliente + ", teléfono " + telefono + ", correo " + correo;
+        return "Cliente{" + "nombre=" + nombre + ", idCliente=" + idCliente + ", telefono=" + telefono + ", correo=" + correo + ", sexo=" + sexo + ", nivel=" + nivel + '}';
     }
+    
+    
 }

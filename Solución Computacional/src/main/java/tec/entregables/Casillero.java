@@ -31,16 +31,17 @@ public class Casillero {
         this.articulosPendientes = new ArrayList<>();
     }
     
-    
     /**
      * Asigna un cliente al casillero, marcándolo como ocupado.
      * 
      * @param clienteAsignado
      */
     public void asignarCliente(Cliente clienteAsignado) {
-        this.clienteAsignado = clienteAsignado;
-        this.estado = "Ocupado";
-        System.out.println("Cliente " + clienteAsignado.getNombre() + " añadido al casillero.");
+        if (this.getEstado().equals("Libre")){
+            this.clienteAsignado = clienteAsignado;
+            this.estado = "Ocupado";
+            System.out.println("Cliente " + clienteAsignado.getNombre() + " añadido al casillero " + this.getNumeroCasillero());
+        }
     }
     
     /**
@@ -50,8 +51,6 @@ public class Casillero {
         this.clienteAsignado = null;
         this.estado = "Libre";
     }
-    
-    
     
     //MÉTODOS DE ARTÍCULOS---------------------------------------------------------------------------------------------------------
     /**

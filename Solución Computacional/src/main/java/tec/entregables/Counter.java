@@ -40,7 +40,7 @@ public class Counter {
      */
     private void crearCasilleros() { // REVISAR --------------------------------
         for (int i = 1; i < 1001 + cantidadCasilleros; i++) {
-            casilleros.add(new Casillero(i, "Ocupado"));
+            casilleros.add(new Casillero(i, "Libre"));
         }
     }
     
@@ -52,18 +52,28 @@ public class Counter {
      * @param telefono del cliente.
      * @param correo del cliente.
      * @param sexo del cliente.
-     * @param nivel del cliente.
      * @return true si el cliente fue registrado exitosamente, false si hubo errores.
      * @throws Exception si ocurre un error en el registro.
      */
-    public boolean registrarCliente(String nombre, int idCliente, String telefono, String correo, String sexo, String nivel) throws Exception {
+    public Cliente registrarCliente(String nombre, int idCliente, String telefono, String correo, boolean sexo) throws Exception {
         if (!Validaciones.validarTelefono(telefono) || !Validaciones.validarCorreo(correo)) {
-            return false;
+            return null;
         }
-        Cliente cliente = new Cliente(nombre, idCliente, telefono, correo, sexo, nivel);
-        clientes.add(cliente);
-        return true;
+        Cliente cliente1 = new Cliente(nombre, idCliente, telefono, correo, sexo);
+        clientes.add(cliente1);
+        System.out.println("El cliente " + cliente1.getNombre() + " fue registrado.");
+    
+        // Busca un casillero libre
+        for (Casillero casillero1 : casilleros) {
+            if (casillero1.getEstado().equals("Libre")) {
+                casillero1.asignarCliente(cliente1);
+                return cliente1;
+            }
     }
+    
+    System.out.println("No hay casilleros disponibles para asignar.");
+    return cliente1;
+}
     
     // CONSULTAS --------------------------------------------------
     
@@ -90,34 +100,51 @@ public class Counter {
      * @return Estado de los artículos del cliente (recibidos, entregados y pendientes).
      */
     public String estadoId(int idCliente) {
-        for (Cliente cliente : clientes) {
-            if (cliente.getIdCliente() == idCliente) {
-                return "El casillero " + casillero.getNumeroCasillero() + " tiene asignado al cliente: " + cliente.getNombre() + 
-                " id:" + cliente.getIdCliente() + " teléfono: " + cliente.getTelefono() +
-                " correo: " + cliente.getCorreo() + " sexo: " + cliente.getSexo() + " nivel " + cliente.getNivel() +                        
-                " tiene " + casillero.getArticulosRecibidos().size() + " artículos recibidos, " 
-                + casillero.getArticulosEntregados().size() + " artículos entregados y " 
-                + casillero.getArticulosPendientes().size() + " artículos pendientes.";
+        for (Cliente cliente1 : clientes) { // doble for para revisar primero si encuentra al cliente y luego buscar su casillero
+            if (cliente1.getIdCliente() == idCliente) {
+                for (Casillero casillero : casilleros) {
+                    if (casillero.getClienteAsignado() != null && casillero.getClienteAsignado().getIdCliente() == idCliente) { // si encuentra el cliente, retorna el estado
+                        return "Datos del casillero " + casillero.getNumeroCasillero() + "\n" +
+                                "Cliente: " + cliente1.getNombre() + "\n" +
+                                "Id:" + cliente1.getIdCliente() + "\n" + 
+                                "Teléfono: " + cliente1.getTelefono() + "\n" +
+                                "Correo: " + cliente1.getCorreo() + "\n" + 
+                                "Sexo: " + cliente1.getSexo() + "\n" + 
+                                "Nivel " + cliente1.getNivel() + "\n" +
+                                "Tiene " + casillero.getArticulosRecibidos().size() + " artículos recibidos, " + "\n" +
+                                casillero.getArticulosEntregados().size() + " artículos entregados y " + "\n" +
+                                casillero.getArticulosPendientes().size() + " artículos pendientes.\n" ;
+                    }
+                }
+                return "No se encontró un casillero asignado para el cliente con ID " + idCliente;
             }
         }
     return "Cliente no encontrado";
     }
     
     /**
-     * Retorna el estado del casillero.
+     * Retorna el estado del casillero por medio de su número asignado.
      * 
      * @param numeroCasillero
-     * @return Estado del casillero (artículos recibidos, entregados y pendientes).
+     * @return Todos los datos del casillero y su cliente asociado.
      */
     public String estadoCasillero(int numeroCasillero) {
-        for (Casillero casillero : casilleros) {
-            if (casillero.getNumeroCasillero() == numeroCasillero) {
-                return "El casillero " + casillero.getNumeroCasillero() + " tiene asignado al cliente: " + cliente.getNombre() + 
-                " id:" + cliente.getIdCliente() + " teléfono: " + cliente.getTelefono() +
-                " correo: " + cliente.getCorreo() + " sexo: " + cliente.getSexo() + " nivel " + cliente.getNivel() +                        
-                " tiene " + casillero.getArticulosRecibidos().size() + " artículos recibidos, " 
-                + casillero.getArticulosEntregados().size() + " artículos entregados y " 
-                + casillero.getArticulosPendientes().size() + " artículos pendientes.";
+        for (Casillero casillero1 : casilleros) { // este no necesita doble for, ya que el casillero ya tiene al cliente asignado
+            if (casillero1.getNumeroCasillero() == numeroCasillero) {
+                Cliente clienteAsignado = casillero1.getClienteAsignado();
+                if (clienteAsignado != null) {
+                    return "El casillero " + casillero1.getNumeroCasillero() + " tiene asignado al cliente: " + clienteAsignado.getNombre() + "\n" +
+                                "Id:" + clienteAsignado.getIdCliente() + "\n" + 
+                                "Teléfono: " + clienteAsignado.getTelefono() + "\n" +
+                                "Correo: " + clienteAsignado.getCorreo() + "\n" + 
+                                "Sexo: " + clienteAsignado.getSexo() + "\n" + 
+                                "Nivel " + clienteAsignado.getNivel() + "\n" +
+                                "Tiene " + casillero1.getArticulosRecibidos().size() + " artículos recibidos, " + "\n" +
+                                casillero1.getArticulosEntregados().size() + " artículos entregados y " + "\n" +
+                                casillero1.getArticulosPendientes().size() + " artículos pendientes.\n";
+                } else {
+                    return "El casillero " + numeroCasillero + " está libre.";
+                }
             }
         }
     return "Casillero no encontrado";

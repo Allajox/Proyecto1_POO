@@ -363,7 +363,12 @@ public class Interfaz_Main extends javax.swing.JFrame {
         jLabel11.setText("Sexo:");
 
         GrupoCheckSexo.add(CheckMasculino);
-        CheckMasculino.setText("Maculino");
+        CheckMasculino.setText("Masculino");
+        CheckMasculino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckMasculinoActionPerformed(evt);
+            }
+        });
 
         GrupoCheckSexo.add(CheckFemenino);
         CheckFemenino.setText("Femenino");
@@ -384,8 +389,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                                 .addComponent(CheckMasculino)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CheckFemenino)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(CheckFemenino))
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10)
@@ -963,8 +967,8 @@ public class Interfaz_Main extends javax.swing.JFrame {
                 LabelErrorPaquete.setEnabled(true);
             }
             if (correcto0){
-                MiArticulo = new Articulo("Sobre", 2222, "Sobre", String remitente, double peso);
-                agregarArticuloPendiente(Counter miCounter, Articulo articulo, String estadoArticulo);
+//                MiArticulo = new Articulo("Sobre", 2222, "Sobre", String remitente, double peso);
+//                agregarArticuloPendiente(Counter miCounter, Articulo articulo, String estadoArticulo);
             }
         } else if (TipoPaquete == 1){
             
@@ -1004,8 +1008,8 @@ public class Interfaz_Main extends javax.swing.JFrame {
         int stoiID = Integer.parseInt(TextoIdCasillero.getText());
         miCasillero = new Casillero(123,"hola");
         try{
-            miCounter.registrarCliente(TextoNombre.getText(),stoiID, TextoTelefono.getText()
-            , TextoCorreo.getText(), CheckFemenino.isSelected(), miCasillero, "2");
+//            miCounter.registrarCliente(TextoNombre.getText(),stoiID, TextoTelefono.getText()
+//            , TextoCorreo.getText(), CheckFemenino.isSelected(), miCasillero, "2");
             lblBotonCliente.setText("Agregado Correctamente");
         } catch(Exception e) {
           
@@ -1088,6 +1092,10 @@ public class Interfaz_Main extends javax.swing.JFrame {
     private void SeleccionUbicacionCounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionUbicacionCounterActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SeleccionUbicacionCounterActionPerformed
+
+    private void CheckMasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckMasculinoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckMasculinoActionPerformed
 
     /**
      * @param args the command line arguments

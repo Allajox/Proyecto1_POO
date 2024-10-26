@@ -14,15 +14,19 @@ public class main {
      * Método principal que ejecuta el programa.
      *
      * @param args Argumentos de línea de comandos (no utilizados en este contexto).
+     * @throws java.lang.Exception
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         
         // Crea el counter
         Counter miCounter = new Counter("Central", "San José", 10, "220012");
+        Cliente cliente = miCounter.registrarCliente("Allan", 1234, "89399320", "allan@gmail.com", true);
+        System.out.println(cliente);
+        System.out.println(miCounter.estadoId(1234));
+        System.out.println(miCounter.estadoCasillero(1));
+//        System.out.println(miCounter.getCasilleros().size());
+//        System.out.println(miCounter.buscarCasilleroDisponible());
         
-        System.out.println(miCounter.getCasilleros().size());
-        System.out.println(miCounter.buscarCasilleroDisponible());
-        // Crea un casillero
         /*
         // Crea un cliente, lo agrega al counter y lo asigna a un casillero
         Cliente cliente1 = new Cliente("Allan", 231, "8927-1832", "allanj@gmail.com", "Hombre", casillero, "Normal");
@@ -44,9 +48,6 @@ public class main {
         Articulo articulo1 = new Articulo("Laptop", 209132, "Laptop para trabajo", "HP", 2);
         Articulo articulo2 = new Articulo("Revista", 101234, "Revista de moda", "Lbel", 1);
         Articulo articulo3 = new Articulo("Juego", 120312, "Zelda", "Nintendo", 0.5);
-        Articulo articulo4 = new Articulo("Juego", 542342, "Metroid", "Nintendo", 0.5);
-        Articulo articulo5 = new Articulo("Juego", 129373, "Metal Gear Solid", "Konami", 0.5);
-        Articulo articulo6 = new Articulo("Juego", 982632, "Nier", "Platinum Games", 0.5);
 //        System.out.println("El estado de " + articulo1.getNombre() + " es " + articulo1.getEstadoArticulo());
         
 
@@ -65,21 +66,11 @@ public class main {
             articulo2.setFechaPendiente(sdf.parse("27-09-2024"));
             articulo3.setFechaPendiente(sdf.parse("27-09-2024"));
             articulo3.setFechaPendiente(sdf.parse("27-09-2024"));
-            articulo4.setFechaRecibido(sdf.parse("27-09-2024"));
-            articulo4.setFechaPendiente(sdf.parse("27-09-2024"));
-            articulo5.setFechaRecibido(sdf.parse("27-09-2024"));
-            articulo5.setFechaPendiente(sdf.parse("27-09-2024"));
-            articulo6.setFechaRecibido(sdf.parse("27-09-2024"));
-            articulo6.setFechaPendiente(sdf.parse("27-09-2024"));
             
             casillero.agregarArticuloRecibido(cliente1, articulo1, "Recibido");
             casillero.agregarArticuloRecibido(cliente1, articulo2, "Recibido");
             casillero.agregarArticuloRecibido(cliente1, articulo3, "Recibido");
-            casillero.agregarArticuloRecibido(cliente1, articulo4, "Recibido");
-            casillero.agregarArticuloRecibido(cliente1, articulo5, "Recibido");
-            casillero.agregarArticuloRecibido(cliente1, articulo6, "Recibido");
             System.out.println(casillero.getArticulosRecibidos().size());
-            System.out.println(cliente1.subirNivel());
             
             System.out.println(cliente2.consultarCasilleroNum(cliente2.getCasillero()));
             System.out.println(cliente1.consultarCasilleroId(cliente1.getIdCliente()) + "\n");

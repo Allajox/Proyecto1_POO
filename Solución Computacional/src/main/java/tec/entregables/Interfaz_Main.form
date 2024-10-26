@@ -626,8 +626,11 @@
                             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                               <ComponentRef name="GrupoCheckSexo"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Maculino"/>
+                            <Property name="text" type="java.lang.String" value="Masculino"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckMasculinoActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JCheckBox" name="CheckFemenino">
                           <Properties>
