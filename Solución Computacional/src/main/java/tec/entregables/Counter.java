@@ -4,9 +4,7 @@ package tec.entregables;
  *
  * @author danielasuarez
  */
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Counter {
@@ -41,8 +39,8 @@ public class Counter {
      * Método que crea los casilleros disponibles en el contador.
      */
     private void crearCasilleros() { // REVISAR --------------------------------
-        for (int i = 1001; i < 1001 + cantidadCasilleros; i++) {
-            casilleros.add(new Casillero(i, "Libre"));
+        for (int i = 1; i < 1001 + cantidadCasilleros; i++) {
+            casilleros.add(new Casillero(i, "Ocupado"));
         }
     }
     
@@ -67,46 +65,6 @@ public class Counter {
         return true;
     }
     
-    
-    //PROBABLEMENTE SERÁ ELIMINADO ---------------------------------------------------------------------------------------------------------
-    
-    /**
-     * Método que asigna un casillero disponible a un cliente.
-     *
-     * @param cliente a asignar.
-     * @return el casillero asignado o null si no hay casilleros disponibles.
-     */
-//    public Casillero asignarCasillero(Cliente cliente) {
-//        for (Casillero casi : casilleros) {
-//            if (casi.getEstado().equals("Libre")) {
-//
-//                cliente.setCasillero(casi);
-//                System.out.println("Se ha asignado el casillero " + casi.getNumero() + " al cliente " + cliente.getNombre());
-//                return casi;
-//            }
-//        }
-//        System.out.println("No hay casilleros disponibles para asignar al cliente " + cliente.getNombre());
-//        return null; // Si no hay casilleros disponibles
-//    }
-    
-    
-    //PROBABLEMENTE SERÁ MOVIDO ---------------------------------------------------------------------------------------------------------
-    
-    /**
-     * Método que libera un casillero por su número.
-     *
-     * @param numero del casillero a liberar.
-     */
-//    public void liberarCasillero(int numero) {
-//        for (Casillero casi : casilleros) {
-//            if (casi.getNumero() == numero) {
-//                this.cliente = null;
-//                this.estado = "Libre";
-//                break;
-//            }
-//        }
-//    }
-    
     // CONSULTAS --------------------------------------------------
     
     /**
@@ -114,13 +72,13 @@ public class Counter {
      *
      * @return el casillero disponible o null si no hay.
      */
-    public Casillero buscarCasilleroDisponible() {
-        for (Casillero casi : casilleros) {
-            if (casi.getEstado().equals("Libre")) {
-                return casi;
+    public String buscarCasilleroDisponible() {
+        for (Casillero casillero : casilleros) {
+            if (casillero.getEstado().equals("Libre")) {
+                return "El casillero " + casillero.getNumeroCasillero() + " está libre.";
             }
         }
-        return null;
+        return "No hay casilleros disponibles.";
     }
     
     // MÉTODOS DE ESTADO ------------------------------------------------------------------------------------------------------------------------------------
@@ -240,5 +198,29 @@ public class Counter {
         this.cantidadCasilleros = cantidadCasilleros;
     }
 
+    public String getCedulaJuridica() {
+        return cedulaJuridica;
+    }
+
+    public void setCedulaJuridica(String cedulaJuridica) {
+        this.cedulaJuridica = cedulaJuridica;
+    }
+
+    public Casillero getCasillero() {
+        return casillero;
+    }
+
+    public void setCasillero(Casillero casillero) {
+        this.casillero = casillero;
+    }
+    
+    
+
+    @Override
+    public String toString() {
+        return "Counter{" + "nombre=" + nombre + ", direccion=" + direccion + ", cantidadCasilleros=" + cantidadCasilleros + ", cedulaJuridica=" + cedulaJuridica + '}';
+    }
+
+    
 }
 

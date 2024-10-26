@@ -18,11 +18,11 @@ public class main {
     public static void main(String[] args) {
         
         // Crea el counter
-        Counter counter = new Counter("Central", "San José", 10, "220012");
+        Counter miCounter = new Counter("Central", "San José", 10, "220012");
         
+        System.out.println(miCounter.getCasilleros().size());
+        System.out.println(miCounter.buscarCasilleroDisponible());
         // Crea un casillero
-        Casillero casillero = new Casillero(2333, "Libre");
-        Casillero casillero2 = new Casillero(1203, "Libre");
         /*
         // Crea un cliente, lo agrega al counter y lo asigna a un casillero
         Cliente cliente1 = new Cliente("Allan", 231, "8927-1832", "allanj@gmail.com", "Hombre", casillero, "Normal");

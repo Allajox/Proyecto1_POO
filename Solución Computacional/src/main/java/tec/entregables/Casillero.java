@@ -35,21 +35,21 @@ public class Casillero {
     /**
      * Asigna un cliente al casillero, marcándolo como ocupado.
      * 
-     * @param cliente a asignar.
+     * @param clienteAsignado
      */
-//    public void asignarCliente(Cliente cliente) {
-//        this.cliente = cliente;
-//        this.estado = "Ocupado";
-//        clientes.add(cliente);
-//        System.out.println("Cliente " + cliente.getNombre() + " añadido al casillero. Total clientes: " + clientes.size());
-//    }
-//    /**
-//     * Libera el casillero, dejándolo sin cliente.
-//     */
-//    public void liberarCasillero() {
-//        this.cliente = null;
-//        this.estado = "Libre";
-//    }
+    public void asignarCliente(Cliente clienteAsignado) {
+        this.clienteAsignado = clienteAsignado;
+        this.estado = "Ocupado";
+        System.out.println("Cliente " + clienteAsignado.getNombre() + " añadido al casillero.");
+    }
+    
+    /**
+     * Libera el casillero, dejándolo sin cliente.
+     */
+    public void liberarCasillero() {
+        this.clienteAsignado = null;
+        this.estado = "Libre";
+    }
     
     
     

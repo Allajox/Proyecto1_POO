@@ -32,11 +32,16 @@ public class Articulo {
  */
     public Articulo(String nombre, int numeroReferencia, String descripcion, String remitente, double peso) {
         this.nombre = nombre;
-//        this.estadoArticulo = estadoArticulo ;
+        this.estadoArticulo = null;
+        this.fechaRecibido = null;
+        this.fechaEntregado = null;
+        this.fechaPendiente = null;
         this.numeroReferencia = numeroReferencia;
         this.descripcion = descripcion;
         this.remitente = remitente;
         this.peso = peso;
+        this.impuesto = 0;
+        this.montoCobrado = 0;
     }
 
     public String getNombre() {
