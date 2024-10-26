@@ -1,7 +1,5 @@
 package tec.entregables;
 
-import java.util.ArrayList;
-import java.util.List;
 /**
  *
  * @author salaz
@@ -11,9 +9,8 @@ public class Cliente {
     private int idCliente;
     private String telefono;
     private String correo;
-    private boolean sexo;
-    private String nivel; // normal, plata, oro
-    private List<Articulo> articulosRecibidos;
+    private String sexo;
+    private String nivel; // normal, plata, oro;
     
     /**
      * Constructor que inicializa los atributos del cliente.
@@ -26,14 +23,13 @@ public class Cliente {
      * @param nivel del cliente.
      */
 
-    public Cliente(String nombre, int idCliente, String telefono, String correo, boolean sexo, String nivel) {
+    public Cliente(String nombre, int idCliente, String telefono, String correo, String sexo, String nivel) {
         this.nombre = nombre;
         this.idCliente = idCliente;
         this.telefono = telefono;
         this.correo = correo;
         this.sexo = sexo;
         this.nivel = nivel; // nivel inicial
-        this.articulosRecibidos = new ArrayList<>();
     }
     
     /**
@@ -44,30 +40,15 @@ public class Cliente {
      *
      * @return Nivel actual del cliente.
      */
-    public String subirNivel() {
-        if (articulosRecibidos.size() >= 5) {
-            this.setNivel("Plata");
-        }
-        if (articulosRecibidos.size() >= 10) {
-            this.nivel = "Oro";
-        }
-        return nivel;
-    }
-      
-    // Métodos para gestionar artículos específicos del cliente
-    /**
-     * 
-     * Agrega un artículo a la lista de artículos recibidos.
-     *
-     * @param articulo.
-     */
-    public void agregarArticuloRecibido(Articulo articulo) {
-        articulosRecibidos.add(articulo);
-    }
-    
-    public List<Articulo> getArticulosRecibidos() {
-        return articulosRecibidos;
-    }
+//    public String subirNivel() {
+//        if (articulosRecibidos.size() >= 5) {
+//            this.setNivel("Plata");
+//        }
+//        if (articulosRecibidos.size() >= 10) {
+//            this.nivel = "Oro";
+//        }
+//        return nivel;
+//    }
     
     public String getNombre() {
         return nombre;
@@ -101,11 +82,11 @@ public class Cliente {
         this.correo = correo;
     }
 
-    public boolean getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(boolean sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
     
