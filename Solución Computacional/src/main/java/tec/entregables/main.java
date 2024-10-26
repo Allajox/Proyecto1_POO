@@ -3,7 +3,6 @@ package tec.entregables;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  *
@@ -20,10 +19,22 @@ public class main {
         
         // Crea el counter
         Counter miCounter = new Counter("Central", "San José", 10, "220012");
-        Cliente cliente = miCounter.registrarClienteEnCounter("Allan", 1234, "89399320", "allan@gmail.com", true);
-        System.out.println(cliente);
-        System.out.println(miCounter.estadoId(1234));
-        System.out.println(miCounter.estadoCasillero(1));
+        miCounter.registrarClienteEnCounter("Allan", 1234, "89399320", "allan@gmail.com", true);
+        for (Casillero casillero : miCounter.getCasilleros()) {
+            if (casillero.getClienteAsignado() != null){            
+            System.out.println(casillero.getClienteAsignado());
+            }
+        }
+//        System.out.println(miCounter.estadoId(1234));
+//        System.out.println(miCounter.estadoCasillero(1));}
+        Articulo articulo1 = new Articulo("Laptop", 209132, "Laptop para trabajo", "HP", 2);
+        
+//        miCounter.getCasillero().agregarArticuloRecibido(articulo1, casillero.getNumeroCasillero());
+//        casillero.agregarArticuloPendiente(articulo1, 1);
+    }
+}
+
+        
 //        System.out.println(miCounter.getCasilleros().size());
 //        System.out.println(miCounter.buscarCasilleroDisponible());
         
@@ -31,12 +42,6 @@ public class main {
         // Crea un cliente, lo agrega al counter y lo asigna a un casillero
         Cliente cliente1 = new Cliente("Allan", 231, "8927-1832", "allanj@gmail.com", "Hombre", casillero, "Normal");
         counter.registarCliente(cliente1);
-
-        Cliente cliente2 = new Cliente("Sara", 233, "2193-3123", "sara@gmail.com", "Mujer", casillero2, "Normal");
-        counter.agregarCliente(cliente2);
-        
-        counter.asignarCasillero(cliente1);
-        counter.asignarCasillero(cliente2);
         
         System.out.println("El numero de casillero es: " + casillero.getNumero() + ", el número de cliente es " + cliente1.getIdCliente());
         System.out.println("El numero de casillero es: " + casillero2.getNumero() + ", el número de cliente es " + cliente2.getIdCliente());
@@ -48,11 +53,10 @@ public class main {
         Articulo articulo1 = new Articulo("Laptop", 209132, "Laptop para trabajo", "HP", 2);
         Articulo articulo2 = new Articulo("Revista", 101234, "Revista de moda", "Lbel", 1);
         Articulo articulo3 = new Articulo("Juego", 120312, "Zelda", "Nintendo", 0.5);
-//        System.out.println("El estado de " + articulo1.getNombre() + " es " + articulo1.getEstadoArticulo());
+        System.out.println("El estado de " + articulo1.getNombre() + " es " + articulo1.getEstadoArticulo());
         
 
         //se repiten para ver el estado
-        System.out.println(cliente2.consultarCasilleroNum(cliente2.getCasillero()));
         System.out.println(cliente1.consultarCasilleroId(cliente1.getIdCliente()) + "\n");
         
         SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
@@ -175,7 +179,6 @@ public class main {
         } catch (Exception e) {
             e.printStackTrace();
 
-        }*/
-    }
-}
-
+        }
+    }*/
+//}

@@ -13,6 +13,7 @@ public class Casillero {
     private int numeroCasillero;
     private String estado;
     private Cliente clienteAsignado;
+    private Articulo articulo;
     private List<Articulo> articulosRecibidos;
     private List<Articulo> articulosEntregados;
     private List<Articulo> articulosPendientes;
@@ -26,6 +27,7 @@ public class Casillero {
         this.numeroCasillero = numeroCasillero;
         this.estado = estado;
         this.clienteAsignado = null;
+        this.articulo = null;
         this.articulosRecibidos = new ArrayList<>();
         this.articulosEntregados = new ArrayList<>();
         this.articulosPendientes = new ArrayList<>();
@@ -57,9 +59,10 @@ public class Casillero {
      * Agrega un artículo pendiente al casillero.
      * 
      * @param articulo pendiente.
+     * @param numeroCasillero
      * @param estadoArticulo del artículo.
      */
-    public void agregarArticuloPendiente(Articulo articulo, String estadoArticulo) {
+    public void agregarArticuloPendiente(Articulo articulo, int numeroCasillero) {
         this.articulosPendientes.add(articulo);
         articulo.setEstadoArticulo("Pendiente");
     }
@@ -68,9 +71,10 @@ public class Casillero {
      * Agrega un artículo recibido al casillero y lo marca como pendiente.
      * 
      * @param articulo recibido.
+     * @param numeroCasillero
      * @param estadoArticulo del artículo.
      */   
-    public void agregarArticuloRecibido(Articulo articulo, String estadoArticulo) {
+    public void agregarArticuloRecibido(Articulo articulo, int numeroCasillero) {
         this.articulosRecibidos.add(articulo);  
         articulo.setEstadoArticulo("Recibido");
 
@@ -79,10 +83,11 @@ public class Casillero {
      * Agrega un artículo entregado al casillero y lo remueve de pendientes.
      * 
      * @param articulo entregado.
+     * @param numeroCasillero
      * @param estadoArticulo del artículo.
      */
-    public void agregarArticuloEntregado(Articulo articulo, String estadoArticulo) {
-        this.articulosEntregados.add(articulo);      // Actualiza en casillero
+    public void agregarArticuloEntregado(Articulo articulo, int numeroCasillero) {
+        this.articulosEntregados.add(articulo);     
         this.articulosPendientes.remove(articulo);   // Quita el artículo de pendientes en casillero
         articulo.setEstadoArticulo("Entregado");
     }
@@ -96,17 +101,17 @@ public class Casillero {
      * 
      * @param articulos lista de artículos.
      * @param fecha a comparar.
-     * @param tipo de artículo a buscar (recibido, entregado, pendiente).
+     * @param estado (recibido, entregado o pendiente)
      * @return Lista de artículos encontrados en la fecha dada.
      */      
-    public List<Articulo> consultarArticulosPorFecha(List<Articulo> articulos, Date fecha, String tipo) {
+    public List<Articulo> consultarArticulosPorFecha(List<Articulo> articulos, Date fecha, String estado) {
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     List<Articulo> articulosFecha = new ArrayList<>();
     
     for (Articulo articulo : articulos) {
         boolean coincide = false;
         String fechaArticulo = "";
-        switch (tipo) {
+        switch (estado) {
             case "recibido":
                 fechaArticulo = sdf.format(articulo.getFechaRecibido());
                 coincide = fechaArticulo.equals(sdf.format(fecha));
@@ -181,6 +186,11 @@ public class Casillero {
 
     public List<Articulo> getArticulosPendientes() {
         return articulosPendientes;
+    }
+
+    @Override
+    public String toString() {
+        return "Casillero{" + "numeroCasillero=" + numeroCasillero + ", estado=" + estado + ", clienteAsignado=" + clienteAsignado + ", articulo=" + articulo + ", articulosRecibidos=" + articulosRecibidos + ", articulosEntregados=" + articulosEntregados + ", articulosPendientes=" + articulosPendientes + '}';
     }
     
     

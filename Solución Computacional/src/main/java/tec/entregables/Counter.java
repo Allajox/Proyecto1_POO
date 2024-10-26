@@ -39,7 +39,7 @@ public class Counter {
      * Método que crea los casilleros disponibles en el contador.
      */
     private void crearCasilleros() { // REVISAR --------------------------------
-        for (int i = 1; i < 1001 + cantidadCasilleros; i++) {
+        for (int i = 1; i < 2 + cantidadCasilleros; i++) {
             casilleros.add(new Casillero(i, "Libre"));
         }
     }
@@ -152,31 +152,29 @@ public class Counter {
 
     
     //POR MODIFICAR ---------------------------------------------------------------------------------------------------------
-    /**
-     * Consulta los clientes que tienen artículos pendientes en el casillero.
-     * 
-     * @return Lista de clientes con artículos pendientes.
-     */
-//    public String clientesPaquetesPendientes(Counter counter) {
-//    StringBuilder resultado = new StringBuilder();
-//    
-//    for (Cliente cliente : counter.getClientes()) {  // Obtener los clientes desde el counter
-//        Casillero casilleroCliente = counter.getCasillero();  // Obtener el casillero del cliente
-//        
-//        if (casilleroCliente != null) {
-//            List<Articulo> articulosPendientes = counter.getArticulosPendientes();
-//            
-//            if (!articulosPendientes.isEmpty()) {
-//                resultado.append("El cliente ")
-//                         .append(cliente.toString())
+    
+    //-----------------------------------------------------------------
+//    public String clientesPaquetesPendientes(List<Casillero> casilleros) {
+//        StringBuilder resultado = new StringBuilder();
+//        for (Casillero casillero : casilleros) {
+//            Cliente clienteA = casillero.getClienteAsignado();
+//            for (Articulo pendiente : casillero.getArticulosPendientes()) {
+//                if (!casillero.getArticulosPendientes().isEmpty()) {
+//                  resultado.append("El cliente ")
+//                         .append(casillero.getClienteAsignado())
 //                         .append(" tiene ")
-//                         .append(articulosPendientes.size())
-//                         .append(" artículo(s) pendiente(s).\n");
-//            }
-//        } else {
+//                         .append(casillero.getArticulosPendientes().size())
+//                         .append(" artículo(s) pendiente(s).\n");  
+//                  } else {
+//               }
 //            System.out.println("El cliente " + cliente.getNombre() + " no tiene casillero asignado.");
 //        }
-//    }
+//        if (resultado.length() == 0) {
+//            return "No hay clientes con artículos pendientes.";
+//        }
+//        return resultado.toString();
+//        }
+//        
 //    
 //    if (resultado.length() == 0) {
 //        return "No hay clientes con artículos pendientes.";
@@ -184,6 +182,26 @@ public class Counter {
 //    
 //    return resultado.toString();
 //    }
+    
+    public String clientesPaquetesPendientes(List<Casillero> casilleros) {
+        StringBuilder resultado = new StringBuilder();
+        for (Casillero casillero : casilleros) {
+            if (!casillero.getArticulosPendientes().isEmpty()) {
+              resultado.append("El cliente ")
+                     .append(casillero.getClienteAsignado())
+                     .append(" tiene ")
+                     .append(casillero.getArticulosPendientes().size())
+                     .append(" artículo(s) pendiente(s).\n");  
+              } else {
+           }
+        System.out.println("El cliente " + cliente.getNombre() + " no tiene casillero asignado.");
+        }
+        if (resultado.length() == 0) {
+            return "No hay clientes con artículos pendientes.";
+        }
+        return resultado.toString();
+    }
+    
     
     public List<Casillero> getCasilleros() {
         return casilleros;
