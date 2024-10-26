@@ -20,7 +20,7 @@ public class main {
         
         // Crea el counter
         Counter miCounter = new Counter("Central", "San José", 10, "220012");
-        Cliente cliente = miCounter.registrarCliente("Allan", 1234, "89399320", "allan@gmail.com", true);
+        Cliente cliente = miCounter.registrarClienteEnCounter("Allan", 1234, "89399320", "allan@gmail.com", true);
         System.out.println(cliente);
         System.out.println(miCounter.estadoId(1234));
         System.out.println(miCounter.estadoCasillero(1));

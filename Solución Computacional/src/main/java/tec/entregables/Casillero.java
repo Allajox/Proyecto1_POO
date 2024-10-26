@@ -36,7 +36,7 @@ public class Casillero {
      * 
      * @param clienteAsignado
      */
-    public void asignarCliente(Cliente clienteAsignado) {
+    public void asignarClienteACasillero(Cliente clienteAsignado) {
         if (this.getEstado().equals("Libre")){
             this.clienteAsignado = clienteAsignado;
             this.estado = "Ocupado";

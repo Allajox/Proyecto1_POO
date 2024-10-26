@@ -55,7 +55,7 @@ public class Counter {
      * @return true si el cliente fue registrado exitosamente, false si hubo errores.
      * @throws Exception si ocurre un error en el registro.
      */
-    public Cliente registrarCliente(String nombre, int idCliente, String telefono, String correo, boolean sexo) throws Exception {
+    public Cliente registrarClienteEnCounter(String nombre, int idCliente, String telefono, String correo, boolean sexo) throws Exception {
         if (!Validaciones.validarTelefono(telefono) || !Validaciones.validarCorreo(correo)) {
             return null;
         }
@@ -66,7 +66,7 @@ public class Counter {
         // Busca un casillero libre
         for (Casillero casillero1 : casilleros) {
             if (casillero1.getEstado().equals("Libre")) {
-                casillero1.asignarCliente(cliente1);
+                casillero1.asignarClienteACasillero(cliente1);
                 return cliente1;
             }
     }
