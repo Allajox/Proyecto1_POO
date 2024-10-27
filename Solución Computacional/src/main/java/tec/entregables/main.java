@@ -55,15 +55,6 @@ public class main {
 
         
         /*
-        // Crear un artículo y asociarlo al casillero
-        Articulo articulo1 = new Articulo("Laptop", 209132, "Laptop para trabajo", "HP", 2);
-        Articulo articulo2 = new Articulo("Revista", 101234, "Revista de moda", "Lbel", 1);
-        Articulo articulo3 = new Articulo("Juego", 120312, "Zelda", "Nintendo", 0.5);
-        System.out.println("El estado de " + articulo1.getNombre() + " es " + articulo1.getEstadoArticulo());
-        
-
-        //se repiten para ver el estado
-        System.out.println(cliente1.consultarCasilleroId(cliente1.getIdCliente()) + "\n");
         
         SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
         try {
@@ -80,9 +71,7 @@ public class main {
             casillero.agregarArticuloRecibido(cliente1, articulo1, "Recibido");
             casillero.agregarArticuloRecibido(cliente1, articulo2, "Recibido");
             casillero.agregarArticuloRecibido(cliente1, articulo3, "Recibido");
-            System.out.println(casillero.getArticulosRecibidos().size());
-            
-            System.out.println(cliente1.consultarCasilleroId(cliente1.getIdCliente()) + "\n");
+
             
             
             // Consultar los artículos recibidos en una fecha
@@ -91,10 +80,6 @@ public class main {
             for (Articulo articulo : articulosRecibidosFecha) {
                 System.out.println(" - " + articulo.toString() + "\n");
             }
-            System.out.println(casillero.clientesPaquetesPendientes(counter));
-            
-            System.out.println(cliente2.consultarCasilleroNum(cliente2.getCasillero()));
-            System.out.println(cliente1.consultarCasilleroId(cliente1.getIdCliente()) + "\n");
             
             // Consultar los artículos entregados en una fecha
             articulo1.setFechaEntregado(sdf.parse("27-09-2024"));
@@ -105,14 +90,8 @@ public class main {
             for (Articulo articulo : articulosEntregadosFecha) {
                 System.out.println(" - " + articulo.toString() + "\n");
             }
-            System.out.println(casillero.clientesPaquetesPendientes(counter));
-            
-            
-            
-            
-            System.out.println(cliente2.consultarCasilleroNum(cliente2.getCasillero()));
-            System.out.println(cliente1.consultarCasilleroId(cliente1.getIdCliente()) + "\n");
-            
+
+
             // Consultar los artículos pendientes en una fecha
             List<Articulo> articulosPendientesFecha = casillero.consultarArticulosPendientes(fechaRecibido);
             System.out.println("Artículos pendientes el " + sdf.format(fechaRecibido) + ":");

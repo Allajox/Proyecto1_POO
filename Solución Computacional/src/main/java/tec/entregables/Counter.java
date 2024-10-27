@@ -152,7 +152,13 @@ public class Counter {
     }
     
 
-    
+    /**
+     * 
+     * Método que retorna todos los clientes que tengan artículos pendientes de retirar
+     * 
+     * @param casilleros
+     * @return la cantidad de clientes con paquetes pendientes
+     */
     public String clientesPaquetesPendientes(List<Casillero> casilleros) {
         StringBuilder resultado = new StringBuilder();
         for (Casillero casillero : casilleros) {
@@ -173,6 +179,12 @@ public class Counter {
     
     // MÉTODOS PARA ASIGNAR ARTÍCULOS A UN CASILLERO ----------------------------------------------------------------
     
+    
+    /**
+     * Método que asigna un artículo como pendiente
+     * @param numeroCasillero
+     * @param articulo 
+     */
     public void asignarArticuloPendienteACasillero(int numeroCasillero, Articulo articulo) {
     for (Casillero casillero : casilleros) {
         if (casillero.getNumeroCasillero() == numeroCasillero && casillero.getEstado().equals("Ocupado")) {
@@ -184,6 +196,11 @@ public class Counter {
     System.out.println("No se encontró el casillero con número: " + numeroCasillero);
     }
     
+    /**
+     * Método que asigna un artículo como entregado
+     * @param numeroCasillero
+     * @param articulo 
+     */
     public void asignarArticuloEntregadoACasillero(int numeroCasillero, Articulo articulo) {
     for (Casillero casillero : casilleros) {
         if (casillero.getNumeroCasillero() == numeroCasillero && casillero.getEstado().equals("Ocupado")) {
@@ -195,6 +212,11 @@ public class Counter {
     System.out.println("No se encontró el casillero con número: " + numeroCasillero);
     }
     
+    /**
+     * Método que asigna un artículo como recibido
+     * @param numeroCasillero
+     * @param articulo 
+     */
     public void asignarArticuloRecibidoACasillero(int numeroCasillero, Articulo articulo) {
     for (Casillero casillero : casilleros) {
         if (casillero.getNumeroCasillero() == numeroCasillero && casillero.getEstado().equals("Ocupado")) {
