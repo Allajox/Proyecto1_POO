@@ -3,6 +3,7 @@ package tec.entregables;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -18,37 +19,42 @@ public class main {
     public static void main(String[] args) throws Exception {
         
         // Crea el counter
-        Counter miCounter = new Counter("Central", "San José", 10, "220012");
+        Counter miCounter = new Counter("Central", "San José", 5, "220012");
+        System.out.println(miCounter.buscarCasilleroDisponible());
         miCounter.registrarClienteEnCounter("Allan", 1234, "89399320", "allan@gmail.com", true);
-        for (Casillero casillero : miCounter.getCasilleros()) {
-            if (casillero.getClienteAsignado() != null){            
-            System.out.println(casillero.getClienteAsignado());
-            }
-        }
+        System.out.println(miCounter.buscarCasilleroDisponible());
+        miCounter.registrarClienteEnCounter("Pedro", 1213, "82322323", "pedro@gmail.com", true);
+//        for (Casillero casillero : miCounter.getCasilleros()) {
+//            if (casillero.getClienteAsignado() != null){
+//            System.out.println(casillero.getClienteAsignado());
+//            }
+//        }
 //        System.out.println(miCounter.estadoId(1234));
-//        System.out.println(miCounter.estadoCasillero(1));}
+//        System.out.println(miCounter.estadoId(1213));
+//        System.out.println(miCounter.estadoCasillero(1));
+//        System.out.println(miCounter.estadoCasillero(2));
         Articulo articulo1 = new Articulo("Laptop", 209132, "Laptop para trabajo", "HP", 2);
+        Articulo articulo2 = new Articulo("Revista", 101234, "Revista de moda", "Lbel", 1);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+        articulo1.setFechaRecibido(sdf.parse("27-09-2024"));
+        articulo1.setFechaPendiente(sdf.parse("27-09-2024"));
         
-//        miCounter.getCasillero().agregarArticuloRecibido(articulo1, casillero.getNumeroCasillero());
-//        casillero.agregarArticuloPendiente(articulo1, 1);
+        Scanner num = new Scanner(System.in);
+        System.out.println("Digite el numero de casillero al que quiere agregar: ");
+        int numCasillero = num.nextInt();
+        
+        miCounter.asignarArticuloPendienteACasillero(numCasillero, articulo1); 
+        miCounter.asignarArticuloRecibidoACasillero(numCasillero, articulo1);
+        miCounter.asignarArticuloPendienteACasillero(numCasillero, articulo2); 
+
+        System.out.println(miCounter.clientesPaquetesPendientes(miCounter.getCasilleros()));
+        System.out.println(miCounter.getCasilleros().size());
+
     }
 }
 
         
-//        System.out.println(miCounter.getCasilleros().size());
-//        System.out.println(miCounter.buscarCasilleroDisponible());
-        
         /*
-        // Crea un cliente, lo agrega al counter y lo asigna a un casillero
-        Cliente cliente1 = new Cliente("Allan", 231, "8927-1832", "allanj@gmail.com", "Hombre", casillero, "Normal");
-        counter.registarCliente(cliente1);
-        
-        System.out.println("El numero de casillero es: " + casillero.getNumero() + ", el número de cliente es " + cliente1.getIdCliente());
-        System.out.println("El numero de casillero es: " + casillero2.getNumero() + ", el número de cliente es " + cliente2.getIdCliente());
-        
-        String estadoCasilleroCliente = counter.consultarEstadoCasilleroPorCliente(cliente1.getIdCliente());
-        System.out.println(estadoCasilleroCliente);
-        
         // Crear un artículo y asociarlo al casillero
         Articulo articulo1 = new Articulo("Laptop", 209132, "Laptop para trabajo", "HP", 2);
         Articulo articulo2 = new Articulo("Revista", 101234, "Revista de moda", "Lbel", 1);
@@ -76,7 +82,6 @@ public class main {
             casillero.agregarArticuloRecibido(cliente1, articulo3, "Recibido");
             System.out.println(casillero.getArticulosRecibidos().size());
             
-            System.out.println(cliente2.consultarCasilleroNum(cliente2.getCasillero()));
             System.out.println(cliente1.consultarCasilleroId(cliente1.getIdCliente()) + "\n");
             
             

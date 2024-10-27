@@ -59,36 +59,32 @@ public class Casillero {
      * Agrega un artículo pendiente al casillero.
      * 
      * @param articulo pendiente.
-     * @param numeroCasillero
-     * @param estadoArticulo del artículo.
      */
-    public void agregarArticuloPendiente(Articulo articulo, int numeroCasillero) {
-        this.articulosPendientes.add(articulo);
-        articulo.setEstadoArticulo("Pendiente");
-    }
+    public void agregarArticuloPendiente(Articulo articulo) {
+    this.articulosPendientes.add(articulo);
+    articulo.setEstadoArticulo("Pendiente");
+    System.out.println("Artículo " + articulo.getDescripcion() + " añadido al casillero " + this.numeroCasillero);
+}
     
      /**
-     * Agrega un artículo recibido al casillero y lo marca como pendiente.
+     * Agrega un artículo recibido al casillero
      * 
      * @param articulo recibido.
-     * @param numeroCasillero
-     * @param estadoArticulo del artículo.
      */   
-    public void agregarArticuloRecibido(Articulo articulo, int numeroCasillero) {
+    public void agregarArticuloRecibido(Articulo articulo) {
         this.articulosRecibidos.add(articulo);  
         articulo.setEstadoArticulo("Recibido");
+        
 
     }
     /**
      * Agrega un artículo entregado al casillero y lo remueve de pendientes.
      * 
      * @param articulo entregado.
-     * @param numeroCasillero
-     * @param estadoArticulo del artículo.
      */
-    public void agregarArticuloEntregado(Articulo articulo, int numeroCasillero) {
+    public void agregarArticuloEntregado(Articulo articulo) {
         this.articulosEntregados.add(articulo);     
-        this.articulosPendientes.remove(articulo);   // Quita el artículo de pendientes en casillero
+        this.articulosPendientes.remove(articulo);   // Quita el artículo de pendientes
         articulo.setEstadoArticulo("Entregado");
     }
     

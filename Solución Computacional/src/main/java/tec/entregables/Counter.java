@@ -38,11 +38,11 @@ public class Counter {
     /**
      * Método que crea los casilleros disponibles en el contador.
      */
-    private void crearCasilleros() { // REVISAR --------------------------------
-        for (int i = 1; i < 2 + cantidadCasilleros; i++) {
-            casilleros.add(new Casillero(i, "Libre"));
-        }
+    private void crearCasilleros() { 
+    for (int i = 0; i < cantidadCasilleros; i++) {
+        casilleros.add(new Casillero(1000 + i, "Libre")); // crea los casilleros a partir de 1000
     }
+}
     
     /**
      * Método que registra un nuevo cliente.
@@ -110,7 +110,7 @@ public class Counter {
                                 "Teléfono: " + cliente1.getTelefono() + "\n" +
                                 "Correo: " + cliente1.getCorreo() + "\n" + 
                                 "Sexo: " + cliente1.getSexo() + "\n" + 
-                                "Nivel " + cliente1.getNivel() + "\n" +
+                                "Nivel: " + cliente1.getNivel() + "\n" +
                                 "Tiene " + casillero.getArticulosRecibidos().size() + " artículos recibidos, " + "\n" +
                                 casillero.getArticulosEntregados().size() + " artículos entregados y " + "\n" +
                                 casillero.getArticulosPendientes().size() + " artículos pendientes.\n" ;
@@ -133,12 +133,13 @@ public class Counter {
             if (casillero1.getNumeroCasillero() == numeroCasillero) {
                 Cliente clienteAsignado = casillero1.getClienteAsignado();
                 if (clienteAsignado != null) {
-                    return "El casillero " + casillero1.getNumeroCasillero() + " tiene asignado al cliente: " + clienteAsignado.getNombre() + "\n" +
+                    return "Datos del casillero " + casillero1.getNumeroCasillero() + "\n" + 
+                                "Cliente: " + clienteAsignado.getNombre() + "\n" +
                                 "Id:" + clienteAsignado.getIdCliente() + "\n" + 
                                 "Teléfono: " + clienteAsignado.getTelefono() + "\n" +
                                 "Correo: " + clienteAsignado.getCorreo() + "\n" + 
                                 "Sexo: " + clienteAsignado.getSexo() + "\n" + 
-                                "Nivel " + clienteAsignado.getNivel() + "\n" +
+                                "Nivel: " + clienteAsignado.getNivel() + "\n" +
                                 "Tiene " + casillero1.getArticulosRecibidos().size() + " artículos recibidos, " + "\n" +
                                 casillero1.getArticulosEntregados().size() + " artículos entregados y " + "\n" +
                                 casillero1.getArticulosPendientes().size() + " artículos pendientes.\n";
@@ -149,52 +150,19 @@ public class Counter {
         }
     return "Casillero no encontrado";
     }
+    
 
-    
-    //POR MODIFICAR ---------------------------------------------------------------------------------------------------------
-    
-    //-----------------------------------------------------------------
-//    public String clientesPaquetesPendientes(List<Casillero> casilleros) {
-//        StringBuilder resultado = new StringBuilder();
-//        for (Casillero casillero : casilleros) {
-//            Cliente clienteA = casillero.getClienteAsignado();
-//            for (Articulo pendiente : casillero.getArticulosPendientes()) {
-//                if (!casillero.getArticulosPendientes().isEmpty()) {
-//                  resultado.append("El cliente ")
-//                         .append(casillero.getClienteAsignado())
-//                         .append(" tiene ")
-//                         .append(casillero.getArticulosPendientes().size())
-//                         .append(" artículo(s) pendiente(s).\n");  
-//                  } else {
-//               }
-//            System.out.println("El cliente " + cliente.getNombre() + " no tiene casillero asignado.");
-//        }
-//        if (resultado.length() == 0) {
-//            return "No hay clientes con artículos pendientes.";
-//        }
-//        return resultado.toString();
-//        }
-//        
-//    
-//    if (resultado.length() == 0) {
-//        return "No hay clientes con artículos pendientes.";
-//    }
-//    
-//    return resultado.toString();
-//    }
     
     public String clientesPaquetesPendientes(List<Casillero> casilleros) {
         StringBuilder resultado = new StringBuilder();
         for (Casillero casillero : casilleros) {
-            if (!casillero.getArticulosPendientes().isEmpty()) {
+            if (!casillero.getArticulosPendientes().isEmpty()) { // el ! es un "no", entonces si no está vacía hace lo siguiente
               resultado.append("El cliente ")
                      .append(casillero.getClienteAsignado())
                      .append(" tiene ")
                      .append(casillero.getArticulosPendientes().size())
                      .append(" artículo(s) pendiente(s).\n");  
-              } else {
            }
-        System.out.println("El cliente " + cliente.getNombre() + " no tiene casillero asignado.");
         }
         if (resultado.length() == 0) {
             return "No hay clientes con artículos pendientes.";
@@ -202,6 +170,41 @@ public class Counter {
         return resultado.toString();
     }
     
+    
+    // MÉTODOS PARA ASIGNAR ARTÍCULOS A UN CASILLERO ----------------------------------------------------------------
+    
+    public void asignarArticuloPendienteACasillero(int numeroCasillero, Articulo articulo) {
+    for (Casillero casillero : casilleros) {
+        if (casillero.getNumeroCasillero() == numeroCasillero && casillero.getEstado().equals("Ocupado")) {
+            casillero.agregarArticuloPendiente(articulo); // delega el control a Casillero
+            System.out.println("Artículo asignado como pendiente en el casillero " + numeroCasillero);
+            return;
+        }
+    }
+    System.out.println("No se encontró el casillero con número: " + numeroCasillero);
+    }
+    
+    public void asignarArticuloEntregadoACasillero(int numeroCasillero, Articulo articulo) {
+    for (Casillero casillero : casilleros) {
+        if (casillero.getNumeroCasillero() == numeroCasillero && casillero.getEstado().equals("Ocupado")) {
+            casillero.agregarArticuloEntregado(articulo); // delega el control a Casillero
+            System.out.println("Artículo asignado como entregado en el casillero " + numeroCasillero);
+            return;
+        }
+    }
+    System.out.println("No se encontró el casillero con número: " + numeroCasillero);
+    }
+    
+    public void asignarArticuloRecibidoACasillero(int numeroCasillero, Articulo articulo) {
+    for (Casillero casillero : casilleros) {
+        if (casillero.getNumeroCasillero() == numeroCasillero && casillero.getEstado().equals("Ocupado")) {
+            casillero.agregarArticuloRecibido(articulo); // delega el control a Casillero
+            System.out.println("Artículo asignado como recibido en el casillero " + numeroCasillero);
+            return;
+        }
+    }
+    System.out.println("No se encontró el casillero con número: " + numeroCasillero);
+    }
     
     public List<Casillero> getCasilleros() {
         return casilleros;
