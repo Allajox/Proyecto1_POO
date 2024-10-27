@@ -26,7 +26,7 @@ public class main {
         miCounter.registrarClienteEnCounter("Pedro", 1213, "82322323", "pedro@gmail.com", true);
 //        for (Casillero casillero : miCounter.getCasilleros()) {
 //            if (casillero.getClienteAsignado() != null){
-//            System.out.println(casillero.getClienteAsignado());
+//            System.out.println(casillero.toString());
 //            }
 //        }
 //        System.out.println(miCounter.estadoId(1234));
@@ -35,20 +35,26 @@ public class main {
 //        System.out.println(miCounter.estadoCasillero(2));
         Articulo articulo1 = new Articulo("Laptop", 209132, "Laptop para trabajo", "HP", 2);
         Articulo articulo2 = new Articulo("Revista", 101234, "Revista de moda", "Lbel", 1);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
-        articulo1.setFechaRecibido(sdf.parse("27-09-2024"));
-        articulo1.setFechaPendiente(sdf.parse("27-09-2024"));
+        Articulo articulo3 = new Articulo("Documento", 101314, "Tesis", "TEC", 1);
+   
+        miCounter.asignarArticuloRecibidoACasillero(1000, articulo1); 
+        miCounter.asignarArticuloRecibidoACasillero(1000, articulo2); 
+        miCounter.asignarArticuloRecibidoACasillero(1000, articulo3);
         
-        Scanner num = new Scanner(System.in);
-        System.out.println("Digite el numero de casillero al que quiere agregar: ");
-        int numCasillero = num.nextInt();
+        miCounter.asignarArticuloRecibidoACasillero(1001, articulo3);
+        miCounter.asignarArticuloRecibidoACasillero(1001, articulo2);
         
-        miCounter.asignarArticuloPendienteACasillero(numCasillero, articulo1); 
-        miCounter.asignarArticuloRecibidoACasillero(numCasillero, articulo1);
-        miCounter.asignarArticuloPendienteACasillero(numCasillero, articulo2); 
-
+        miCounter.asignarArticuloEntregadoACasillero(1000, articulo1);
+        miCounter.asignarArticuloEntregadoACasillero(1001, articulo2);
+        miCounter.asignarArticuloEntregadoACasillero(1001, articulo3);
+        
         System.out.println(miCounter.clientesPaquetesPendientes(miCounter.getCasilleros()));
-        System.out.println(miCounter.getCasilleros().size());
+        
+        System.out.println("Los artículos recibidos de hoy son: " + miCounter.consultarArticulosRecibidos(new Date()));
+        System.out.println("Los artículos pendientes de hoy son: " + miCounter.consultarArticulosPendientes(new Date()));
+        System.out.println("Los artículos entregados de hoy son: " + miCounter.consultarArticulosEntregados(new Date()));
+        
+        System.out.println(articulo1.getFechaPendiente() + " y " + articulo1.getFechaRecibido() + " y " + articulo1.getFechaEntregado());
 
     }
 }

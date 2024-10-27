@@ -4,7 +4,9 @@ package tec.entregables;
  *
  * @author danielasuarez
  */
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Counter {
@@ -179,23 +181,6 @@ public class Counter {
     
     // MÉTODOS PARA ASIGNAR ARTÍCULOS A UN CASILLERO ----------------------------------------------------------------
     
-    
-    /**
-     * Método que asigna un artículo como pendiente
-     * @param numeroCasillero
-     * @param articulo 
-     */
-    public void asignarArticuloPendienteACasillero(int numeroCasillero, Articulo articulo) {
-    for (Casillero casillero : casilleros) {
-        if (casillero.getNumeroCasillero() == numeroCasillero && casillero.getEstado().equals("Ocupado")) {
-            casillero.agregarArticuloPendiente(articulo); // delega el control a Casillero
-            System.out.println("Artículo asignado como pendiente en el casillero " + numeroCasillero);
-            return;
-        }
-    }
-    System.out.println("No se encontró el casillero con número: " + numeroCasillero);
-    }
-    
     /**
      * Método que asigna un artículo como entregado
      * @param numeroCasillero
@@ -203,8 +188,9 @@ public class Counter {
      */
     public void asignarArticuloEntregadoACasillero(int numeroCasillero, Articulo articulo) {
     for (Casillero casillero : casilleros) {
-        if (casillero.getNumeroCasillero() == numeroCasillero && casillero.getEstado().equals("Ocupado")) {
+        if (casillero.getNumeroCasillero() == numeroCasillero && casillero.getEstado().equals("Ocupado")) {// agrega el artículo solo si el casillero está ocupado
             casillero.agregarArticuloEntregado(articulo); // delega el control a Casillero
+            articulo.setFechaEntregado(new Date());
             System.out.println("Artículo asignado como entregado en el casillero " + numeroCasillero);
             return;
         }
@@ -213,20 +199,101 @@ public class Counter {
     }
     
     /**
-     * Método que asigna un artículo como recibido
+     * Método que asigna un artículo como recibido y pendiente
      * @param numeroCasillero
      * @param articulo 
      */
     public void asignarArticuloRecibidoACasillero(int numeroCasillero, Articulo articulo) {
     for (Casillero casillero : casilleros) {
-        if (casillero.getNumeroCasillero() == numeroCasillero && casillero.getEstado().equals("Ocupado")) {
+        if (casillero.getNumeroCasillero() == numeroCasillero && casillero.getEstado().equals("Ocupado")) {// agrega el artículo solo si el casillero está ocupado
             casillero.agregarArticuloRecibido(articulo); // delega el control a Casillero
-            System.out.println("Artículo asignado como recibido en el casillero " + numeroCasillero);
+//            System.out.println("Artículo " + articulo.getNombre() + " asignado como recibido en el casillero " + numeroCasillero);
+            casillero.agregarArticuloPendiente(articulo); // delega el control a Casillero
+//            System.out.println("Artículo" + articulo.getNombre() + " asignado como pendiente en el casillero " + numeroCasillero);
             return;
         }
     }
     System.out.println("No se encontró el casillero con número: " + numeroCasillero);
     }
+    
+    
+    // CONSULTAS POR FECHA ------------------------------------------------------------------------------------------------------------
+    
+    /**
+     * Consulta los artículos del casillero por fecha.
+     * 
+     * @param articulos lista de artículos.
+     * @param fecha a comparar.
+     * @param estado (recibido, entregado o pendiente)
+     * @return Lista de artículos encontrados en la fecha dada.
+     */      
+    public List<Articulo> consultarArticulosPorFecha(List<Articulo> articulos, Date fecha, String estado) {
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    List<Articulo> articulosFecha = new ArrayList<>();
+    
+    for (Articulo articulo : articulos) {
+        boolean coincide = false;
+        String fechaArticulo = "";
+        switch (estado) {
+            case "Recibido":
+                fechaArticulo = sdf.format(articulo.getFechaRecibido());
+                coincide = fechaArticulo.equals(sdf.format(fecha));
+                break;
+            case "Entregado":
+                fechaArticulo = sdf.format(articulo.getFechaEntregado());
+                coincide = fechaArticulo.equals(sdf.format(fecha));
+                break;
+            case "Pendiente":
+                fechaArticulo = sdf.format(articulo.getFechaPendiente());
+                coincide = fechaArticulo.equals(sdf.format(fecha));
+                break;
+        }
+        if (coincide) {
+            articulosFecha.add(articulo);
+        }
+    }
+    return articulosFecha;
+    }
+    
+    /**
+     * 
+     * @param fecha la fecha en la que se quiere consultar
+     * @return todos los artículos recibidos en la fecha consultada
+     */
+    public List<Articulo> consultarArticulosRecibidos(Date fecha) {
+        List<Articulo> articulosRecibidos = new ArrayList<>(); // crea una nueva lista para agregar todos los artículos 
+        for (Casillero casillero : casilleros) {
+            articulosRecibidos.addAll(consultarArticulosPorFecha(casillero.getArticulosRecibidos(), fecha, "Recibido"));
+        }
+        return articulosRecibidos;
+    }
+
+    /**
+     * 
+     * @param fecha la fecha en la que se quiere consultar
+     * @return todos los artículos entregados en la fecha consultada
+     */
+    public List<Articulo> consultarArticulosEntregados(Date fecha) {
+        List<Articulo> articulosEntregados = new ArrayList<>(); // crea una nueva lista para agregar todos los artículos 
+        for (Casillero casillero : casilleros) {
+            articulosEntregados.addAll(consultarArticulosPorFecha(casillero.getArticulosEntregados(), fecha, "Entregado"));
+        }
+        return articulosEntregados;
+    }
+
+    /**
+     * 
+     * @param fecha la fecha en la que se quiere consultar
+     * @return todos los artículos pendientes en la fecha consultada
+     */
+    public List<Articulo> consultarArticulosPendientes(Date fecha) {
+        List<Articulo> articulosPendientes = new ArrayList<>(); // crea una nueva lista para agregar todos los artículos 
+        for (Casillero casillero : casilleros) {
+            articulosPendientes.addAll(consultarArticulosPorFecha(casillero.getArticulosPendientes(), fecha, "Pendiente"));
+        }
+        return articulosPendientes;
+    }
+    
     
     public List<Casillero> getCasilleros() {
         return casilleros;

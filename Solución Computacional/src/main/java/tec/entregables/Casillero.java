@@ -55,6 +55,7 @@ public class Casillero {
     }
     
     //MÉTODOS DE ARTÍCULOS---------------------------------------------------------------------------------------------------------
+    
     /**
      * Agrega un artículo pendiente al casillero.
      * 
@@ -63,7 +64,7 @@ public class Casillero {
     public void agregarArticuloPendiente(Articulo articulo) {
     this.articulosPendientes.add(articulo);
     articulo.setEstadoArticulo("Pendiente");
-    System.out.println("Artículo " + articulo.getDescripcion() + " añadido al casillero " + this.numeroCasillero);
+//    System.out.println("Artículo " + articulo.getDescripcion() + " añadido al casillero " + this.numeroCasillero);
 }
     
      /**
@@ -87,75 +88,7 @@ public class Casillero {
         this.articulosPendientes.remove(articulo);   // Quita el artículo de pendientes
         articulo.setEstadoArticulo("Entregado");
     }
-    
-    
-    
-    // CONSULTAS POR FECHA ------------------------------------------------------------------------------------------------------------
-    
-     /**
-     * Consulta los artículos del casillero por fecha.
-     * 
-     * @param articulos lista de artículos.
-     * @param fecha a comparar.
-     * @param estado (recibido, entregado o pendiente)
-     * @return Lista de artículos encontrados en la fecha dada.
-     */      
-    public List<Articulo> consultarArticulosPorFecha(List<Articulo> articulos, Date fecha, String estado) {
-    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-    List<Articulo> articulosFecha = new ArrayList<>();
-    
-    for (Articulo articulo : articulos) {
-        boolean coincide = false;
-        String fechaArticulo = "";
-        switch (estado) {
-            case "recibido":
-                fechaArticulo = sdf.format(articulo.getFechaRecibido());
-                coincide = fechaArticulo.equals(sdf.format(fecha));
-                break;
-            case "entregado":
-                fechaArticulo = sdf.format(articulo.getFechaEntregado());
-                coincide = fechaArticulo.equals(sdf.format(fecha));
-                break;
-            case "pendiente":
-                fechaArticulo = sdf.format(articulo.getFechaPendiente());
-                coincide = fechaArticulo.equals(sdf.format(fecha));
-                break;
-        }
-        if (coincide) {
-            articulosFecha.add(articulo);
-        }
-    }
-    return articulosFecha;
-    }
-    
-    /**
-     * Consulta los artículos recibidos en una fecha específica.
-     * 
-     * @param fecha a comparar.
-     * @return Lista de artículos recibidos en la fecha dada.
-     */   
-    public List<Articulo> consultarArticulosRecibidos(Date fecha) {
-        return consultarArticulosPorFecha(articulosRecibidos, fecha, "Recibido");
-    }
-    /**
-     * Consulta los artículos entregados en una fecha específica.
-     * 
-     * @param fecha a comparar.
-     * @return Lista de artículos entregados en la fecha dada.
-     */
-    public List<Articulo> consultarArticulosEntregados(Date fecha) {
-        return consultarArticulosPorFecha(articulosEntregados, fecha, "Entregado");
-    }
-    /**
-     * Consulta los artículos pendientes en una fecha específica.
-     * 
-     * @param fecha a comparar.
-     * @return Lista de artículos pendientes en la fecha dada.
-     */
-    public List<Articulo> consultarArticulosPendientes(Date fecha) {
-        return consultarArticulosPorFecha(articulosPendientes, fecha, "Pendiente");
-    }
-    
+
     public int getNumeroCasillero() {
         return numeroCasillero;
     }
@@ -186,7 +119,7 @@ public class Casillero {
 
     @Override
     public String toString() {
-        return "Casillero{" + "numeroCasillero=" + numeroCasillero + ", estado=" + estado + ", clienteAsignado=" + clienteAsignado + ", articulo=" + articulo + ", articulosRecibidos=" + articulosRecibidos + ", articulosEntregados=" + articulosEntregados + ", articulosPendientes=" + articulosPendientes + '}';
+        return "Casillero{" + "numeroCasillero=" + numeroCasillero + ", estado=" + estado + ", clienteAsignado=" + clienteAsignado + ", articulosRecibidos=" + articulosRecibidos + ", articulosEntregados=" + articulosEntregados + ", articulosPendientes=" + articulosPendientes + '}';
     }
     
     

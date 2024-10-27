@@ -10,12 +10,12 @@ import java.util.Date;
 public class Articulo {
     private String nombre;
     private String estadoArticulo;
-    private Date fechaRecibido;
-    private Date fechaEntregado;
-    private Date fechaPendiente;
     private int numeroReferencia;
     private String descripcion;
     private String remitente;
+    private Date fechaRecibido;
+    private Date fechaEntregado;
+    private Date fechaPendiente;
     private double peso;
     private double impuesto;
     private double montoCobrado;
@@ -32,14 +32,14 @@ public class Articulo {
  */
     public Articulo(String nombre, int numeroReferencia, String descripcion, String remitente, double peso) {
         this.nombre = nombre;
-        this.estadoArticulo = null;
-        this.fechaRecibido = null;
-        this.fechaEntregado = null;
-        this.fechaPendiente = null;
         this.numeroReferencia = numeroReferencia;
         this.descripcion = descripcion;
         this.remitente = remitente;
         this.peso = peso;
+        this.estadoArticulo = null;
+        this.fechaRecibido = new Date();
+        this.fechaEntregado = null;
+        this.fechaPendiente = new Date();
         this.impuesto = 0;
         this.montoCobrado = 0;
     }
@@ -137,6 +137,6 @@ public class Articulo {
 
     @Override
     public String toString() {
-        return "Articulo{" + "nombre=" + nombre + ", estadoArticulo=" + estadoArticulo + ", numeroReferencia=" + numeroReferencia + ", descripcion=" + descripcion + ", remitente=" + remitente + ", peso=" + peso + " kg" + '}';
+        return "Articulo{" + "nombre=" + nombre + " NumeroReferencia=" + numeroReferencia;
     }
 }
