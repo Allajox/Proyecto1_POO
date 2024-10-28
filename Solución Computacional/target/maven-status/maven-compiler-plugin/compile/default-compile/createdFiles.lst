@@ -1,4 +1,5 @@
 tec\entregables\Interfaz_Main$2.class
+tec\entregables\enviarCorreo$1.class
 tec\entregables\Interfaz_Main$16.class
 tec\entregables\Casillero.class
 tec\entregables\Interfaz_Main$7.class
@@ -7,6 +8,7 @@ tec\entregables\Cliente.class
 tec\entregables\Interfaz_Main$22.class
 tec\entregables\Counter.class
 tec\entregables\Articulo.class
+tec\entregables\enviarCorreo.class
 tec\entregables\Interfaz_Main$11.class
 tec\entregables\Interfaz_Main$21.class
 tec\entregables\Interfaz_Main$14.class
@@ -15,7 +17,6 @@ tec\entregables\Solicitud.class
 tec\entregables\Interfaz_Main$19.class
 tec\entregables\Interfaz_Main$24.class
 tec\entregables\Interfaz_Main$5.class
-tec\entregables\Interfaz_Main$25.class
 tec\entregables\Interfaz_Main$15.class
 tec\entregables\Interfaz_Main$3.class
 tec\entregables\HTTPPost.class

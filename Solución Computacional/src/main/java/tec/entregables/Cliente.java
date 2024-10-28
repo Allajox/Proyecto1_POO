@@ -1,7 +1,5 @@
 package tec.entregables;
 
-import java.util.Date;
-
 /**
  *
  * @author salaz
@@ -12,7 +10,6 @@ public class Cliente {
     private String telefono;
     private String correo;
     private boolean sexo;
-    private Date fechaNac;
     private String nivel; // normal, plata, oro;
     
     /**
@@ -25,13 +22,12 @@ public class Cliente {
      * @param sexo del cliente.
      */
 
-    public Cliente(String nombre, int idCliente, String telefono, String correo, boolean sexo, Date fechaNac) {
+    public Cliente(String nombre, int idCliente, String telefono, String correo, boolean sexo) {
         this.nombre = nombre;
         this.idCliente = idCliente;
         this.telefono = telefono;
         this.correo = correo;
         this.sexo = sexo;
-        this.fechaNac = fechaNac;
         this.nivel = "Normal"; // nivel inicial
     }
     
@@ -93,22 +89,10 @@ public class Cliente {
         this.sexo = sexo;
     }
 
-    public Date getFechaNac() {
-        return fechaNac;
-    }
-
-    public void setFechaNac(Date fechaNac) {
-        this.fechaNac = fechaNac;
-    }
-
     @Override
     public String toString() {
-        return  "Nombre = " + nombre + "\n" +
-                ", idCliente = " + idCliente + "\n" + 
-                ", telefono = " + telefono + "\n" +
-                ", correo =" + correo + "\n" + 
-                ", sexo = " + sexo + "\n" +
-                ", fechaNac = " + fechaNac + "\n" +
-                ", nivel = " + nivel + '}' + "\n";
-    } 
+        return "Cliente{" + "nombre=" + nombre + ", idCliente=" + idCliente + ", telefono=" + telefono + ", correo=" + correo + ", sexo=" + sexo + ", nivel=" + nivel + '}';
+    }
+    
+    
 }
