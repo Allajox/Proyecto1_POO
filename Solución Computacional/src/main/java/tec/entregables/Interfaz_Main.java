@@ -5,7 +5,9 @@
 package tec.entregables;
 
 import java.awt.Color;
-import static java.lang.Integer.parseInt;
+import static tec.entregables.CalculadoraImpuestos.calcularImpuestoPaquete;
+import static tec.entregables.CalculadoraImpuestos.calcularImpuestoRevista;
+import static tec.entregables.CalculadoraImpuestos.calcularImpuestoSobre;
 
 /**
  *
@@ -15,7 +17,8 @@ public class Interfaz_Main extends javax.swing.JFrame {
     private Counter miCounter;
     private Cliente miCliente;
     private Casillero miCasillero;
-    private Articulo MiArticulo;
+    private Articulo miArticulo;
+    private int numeroArticulo = 0;
     /**
      * Creates new form JFrame_Main
      */
@@ -1039,6 +1042,8 @@ public class Interfaz_Main extends javax.swing.JFrame {
         boolean correcto0 = true;
         boolean correcto1 = true;
         boolean correcto2 = true;
+        String remitente;
+        double peso;
         
         TipoPaquete = SeleccionPaquete.getSelectedIndex();
         if (TipoPaquete == 0){
@@ -1046,14 +1051,61 @@ public class Interfaz_Main extends javax.swing.JFrame {
                 LabelErrorPaquete.setForeground(Color.red);
                 LabelErrorPaquete.setText("Error: Faltan Datos");
                 LabelErrorPaquete.setEnabled(true);
+                correcto0 = false;
             }
+            
             if (correcto0){
-                //MiArticulo = new Articulo("Sobre", 2222, "Sobre", String remitente, double peso);
-                //agregarArticuloPendiente(Counter miCounter, Articulo articulo, String estadoArticulo);
+                if (SeleccionSobre.getSelectedIndex() == 0){
+                    miArticulo = new Articulo("Documento", numeroArticulo, "Documento", "admin", 0);
+                    miCasillero.agregarArticuloPendiente(miArticulo);
+                    numeroArticulo++;
+                    
+                    miArticulo.setImpuesto(calcularImpuestoSobre(CheckAereo.isSelected(),CheckManila.isSelected()));
+                    LabelErrorPaquete.setForeground(Color.black);
+                    LabelErrorPaquete.setText("Recibido");
+                    LabelErrorPaquete.setEnabled(true);
+                }
+                if (SeleccionSobre.getSelectedIndex() == 1){
+                    miArticulo = new Articulo("Documento", numeroArticulo, "Articulo Pequeño", "admin", 0);
+                    miCasillero.agregarArticuloPendiente(miArticulo);
+                    numeroArticulo++;
+                    
+                    miArticulo.setImpuesto(calcularImpuestoSobre(CheckAereo.isSelected(),CheckManila.isSelected()));
+                    
+                    LabelErrorPaquete.setForeground(Color.black);
+                    LabelErrorPaquete.setText("Recibido");
+                    LabelErrorPaquete.setEnabled(true);
+                    
+                }
+                
             }
         } else if (TipoPaquete == 1){
-            
+
+            if (correcto1){
+                miArticulo = new Articulo("Sobre", 2222, "Sobre", "admin", (Integer)SpinnerPaquetePeso.getValue());
+                miCasillero.agregarArticuloPendiente(miArticulo);
+                
+                miArticulo.setImpuesto(calcularImpuestoPaquete(miArticulo.getPeso(),
+                        CheckElectronico.isSelected(), CheckFragil.isSelected()));
+                LabelErrorPaquete.setForeground(Color.black);
+                LabelErrorPaquete.setText("Recibido");
+                LabelErrorPaquete.setEnabled(true);
+                numeroArticulo++;
+            }
         } else if (TipoPaquete == 2){
+
+            
+            if (correcto2){
+                miArticulo = new Articulo((String)SeleccionRevista.getSelectedItem(), 2222, "Sobre", "admin", 0);
+                miCasillero.agregarArticuloPendiente(miArticulo);
+                
+                miArticulo.setImpuesto(calcularImpuestoRevista(CheckCatalogo.isSelected()));
+                LabelErrorPaquete.setForeground(Color.black);
+                LabelErrorPaquete.setText("Recibido");
+                LabelErrorPaquete.setEnabled(true);
+                numeroArticulo++;
+                
+            }
             
         } else {
             LabelErrorPaquete.setForeground(Color.red);
