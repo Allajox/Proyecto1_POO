@@ -122,6 +122,8 @@ public class Interfaz_Main extends javax.swing.JFrame {
         LabelErrorPaquete = new javax.swing.JLabel();
         SeleccionRevista = new javax.swing.JComboBox<>();
         CheckCatalogo = new javax.swing.JCheckBox();
+        lblCasi = new javax.swing.JLabel();
+        txtNumCasi = new javax.swing.JTextField();
         PestañaConsulta = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -745,6 +747,8 @@ public class Interfaz_Main extends javax.swing.JFrame {
             }
         });
 
+        lblCasi.setText("Número del casillero a asignar");
+
         javax.swing.GroupLayout PestañaRecepcionLayout = new javax.swing.GroupLayout(PestañaRecepcion);
         PestañaRecepcion.setLayout(PestañaRecepcionLayout);
         PestañaRecepcionLayout.setHorizontalGroup(
@@ -789,13 +793,19 @@ public class Interfaz_Main extends javax.swing.JFrame {
                                 .addGap(44, 44, 44)
                                 .addGroup(PestañaRecepcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(CheckCatalogo)
-                                    .addComponent(LabelRevista)
-                                    .addComponent(SeleccionRevista, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(PestañaRecepcionLayout.createSequentialGroup()
+                                        .addGroup(PestañaRecepcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(LabelRevista)
+                                            .addComponent(SeleccionRevista, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(47, 47, 47)
+                                        .addGroup(PestañaRecepcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lblCasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtNumCasi)))))
                             .addGroup(PestañaRecepcionLayout.createSequentialGroup()
                                 .addComponent(BotonComprobarArticulos)
                                 .addGap(18, 18, 18)
                                 .addComponent(LabelErrorPaquete)))
-                        .addGap(0, 449, Short.MAX_VALUE))))
+                        .addGap(0, 240, Short.MAX_VALUE))))
         );
         PestañaRecepcionLayout.setVerticalGroup(
             PestañaRecepcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -810,13 +820,15 @@ public class Interfaz_Main extends javax.swing.JFrame {
                 .addGroup(PestañaRecepcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelSobre)
                     .addComponent(LabelPaquete)
-                    .addComponent(LabelRevista))
+                    .addComponent(LabelRevista)
+                    .addComponent(lblCasi, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PestañaRecepcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SeleccionSobre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SpinnerPaquetePeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelPeso)
-                    .addComponent(SeleccionRevista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SeleccionRevista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumCasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PestañaRecepcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CheckAereo)
@@ -828,7 +840,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
                 .addGroup(PestañaRecepcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonComprobarArticulos)
                     .addComponent(LabelErrorPaquete))
-                .addContainerGap(288, Short.MAX_VALUE))
+                .addContainerGap(294, Short.MAX_VALUE))
         );
 
         jTabbedPane4.addTab("Recepcion", PestañaRecepcion);
@@ -1045,6 +1057,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
         String remitente;
         double peso;
         
+        int numCasi = Integer.parseInt(txtNumCasi.getText());
         TipoPaquete = SeleccionPaquete.getSelectedIndex();
         if (TipoPaquete == 0){
             if (SeleccionSobre.getSelectedIndex()!=(0|1)){
@@ -1056,25 +1069,25 @@ public class Interfaz_Main extends javax.swing.JFrame {
             
             if (correcto0){
                 if (SeleccionSobre.getSelectedIndex() == 0){
-                    miArticulo = new Articulo("Documento", numeroArticulo, "Documento", "admin", 0);
-                    miCasillero.agregarArticuloPendiente(miArticulo);
+                    miCounter.recibirArticulo(numCasi, "Documento", numeroArticulo, "Documento", "admin", 0);
                     numeroArticulo++;
                     
-                    miArticulo.setImpuesto(calcularImpuestoSobre(CheckAereo.isSelected(),CheckManila.isSelected()));
+//                    miArticulo.setImpuesto(calcularImpuestoSobre(CheckAereo.isSelected(),CheckManila.isSelected()));
                     LabelErrorPaquete.setForeground(Color.black);
                     LabelErrorPaquete.setText("Recibido");
                     LabelErrorPaquete.setEnabled(true);
+                    System.out.println("Artículo recibido");
                 }
                 if (SeleccionSobre.getSelectedIndex() == 1){
-                    miArticulo = new Articulo("Documento", numeroArticulo, "Articulo Pequeño", "admin", 0);
-                    miCasillero.agregarArticuloPendiente(miArticulo);
+                    miCounter.recibirArticulo(numCasi, "Documento", numeroArticulo, "Articulo Pequeño", "admin", 0);
                     numeroArticulo++;
                     
-                    miArticulo.setImpuesto(calcularImpuestoSobre(CheckAereo.isSelected(),CheckManila.isSelected()));
+//                    miArticulo.setImpuesto(calcularImpuestoSobre(CheckAereo.isSelected(),CheckManila.isSelected()));
                     
                     LabelErrorPaquete.setForeground(Color.black);
                     LabelErrorPaquete.setText("Recibido");
                     LabelErrorPaquete.setEnabled(true);
+                    System.out.println("Artículo recibido");
                     
                 }
                 
@@ -1082,27 +1095,27 @@ public class Interfaz_Main extends javax.swing.JFrame {
         } else if (TipoPaquete == 1){
 
             if (correcto1){
-                miArticulo = new Articulo("Sobre", 2222, "Sobre", "admin", (Integer)SpinnerPaquetePeso.getValue());
-                miCasillero.agregarArticuloPendiente(miArticulo);
+                miCounter.recibirArticulo(numCasi, "Sobre", 2222, "Sobre", "admin", (Integer)SpinnerPaquetePeso.getValue());
                 
-                miArticulo.setImpuesto(calcularImpuestoPaquete(miArticulo.getPeso(),
-                        CheckElectronico.isSelected(), CheckFragil.isSelected()));
+//                miArticulo.setImpuesto(calcularImpuestoPaquete(miArticulo.getPeso(),
+//                        CheckElectronico.isSelected(), CheckFragil.isSelected()));
                 LabelErrorPaquete.setForeground(Color.black);
                 LabelErrorPaquete.setText("Recibido");
                 LabelErrorPaquete.setEnabled(true);
+                System.out.println("Artículo recibido");
                 numeroArticulo++;
             }
         } else if (TipoPaquete == 2){
 
             
             if (correcto2){
-                miArticulo = new Articulo((String)SeleccionRevista.getSelectedItem(), 2222, "Sobre", "admin", 0);
-                miCasillero.agregarArticuloPendiente(miArticulo);
+                miCounter.recibirArticulo(numCasi, (String)SeleccionRevista.getSelectedItem(), 2222, "Sobre", "admin", 0);
                 
-                miArticulo.setImpuesto(calcularImpuestoRevista(CheckCatalogo.isSelected()));
+//                miArticulo.setImpuesto(calcularImpuestoRevista(CheckCatalogo.isSelected()));
                 LabelErrorPaquete.setForeground(Color.black);
                 LabelErrorPaquete.setText("Recibido");
                 LabelErrorPaquete.setEnabled(true);
+                System.out.println("Artículo recibido");
                 numeroArticulo++;
                 
             }
@@ -1403,6 +1416,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblBotonCliente;
+    private javax.swing.JLabel lblCasi;
     private javax.swing.JLabel lblClienteNum;
     private javax.swing.JLabel lblResConsulta;
     private javax.swing.JLabel lblResultadoBorrar;
@@ -1410,5 +1424,6 @@ public class Interfaz_Main extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tabbedConsultas;
     private javax.swing.JTextField txtBorrar;
     private javax.swing.JTextField txtConsulta;
+    private javax.swing.JTextField txtNumCasi;
     // End of variables declaration//GEN-END:variables
 }

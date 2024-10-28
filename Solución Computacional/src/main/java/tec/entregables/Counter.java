@@ -231,14 +231,13 @@ public class Counter {
     /**
      * Método que asigna un artículo como recibido y pendiente
      * @param numeroCasillero 
-     * @param nombre 
      * @param numeroReferencia 
      * @param descripcion 
      * @param remitente 
      * @param peso 
      */
-    public void recibirArticulo(int numeroCasillero, String nombre, int numeroReferencia, String descripcion, String remitente, double peso) {
-        Articulo articulo = new Articulo(nombre, numeroReferencia, descripcion, remitente, peso);
+    public void recibirArticulo(int numeroCasillero, String tipo, int numeroReferencia, String descripcion, String remitente, double peso) {
+        Articulo articulo = new Articulo(tipo, numeroReferencia, descripcion, remitente, peso);
         articulos.add(articulo);
         for (Casillero casillero : casilleros) {
             if (casillero.getNumeroCasillero() == numeroCasillero && casillero.getEstado().equals("Ocupado")) {// agrega el artículo solo si el casillero está ocupado

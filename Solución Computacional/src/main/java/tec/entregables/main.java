@@ -21,13 +21,6 @@ public class main {
         miCounter.registrarClienteEnCounter("Allan", 1234, "89399320", "allan@gmail.com", true, new Date(2003-1900, 7, 22));
         System.out.println(miCounter.buscarCasilleroDisponible());
         miCounter.registrarClienteEnCounter("Pedro", 1213, "82322323", "pedro@gmail.com", true, new Date(2001-1900, 3, 23));
-//        System.out.println(miCounter.estadoId(1234));
-//        System.out.println(miCounter.estadoId(1213));
-//        System.out.println(miCounter.estadoCasillero(1000));
-//        System.out.println(miCounter.estadoCasillero(1001));
-//        Articulo articulo1 = new Articulo("Laptop", 209132, "Laptop para trabajo", "HP", 2);
-//        Articulo articulo2 = new Articulo("Revista", 101234, "Revista de moda", "Lbel", 1);
-//        Articulo articulo3 = new Articulo("Documento", 101314, "Tesis", "TEC", 1);
    
         miCounter.recibirArticulo(1000, "Laptop", 209132, "Laptop para trabajo", "HP", 2); 
         miCounter.recibirArticulo(1000, "Revista", 101234, "Revista de moda", "Lbel", 1); 
@@ -49,37 +42,36 @@ public class main {
         System.out.println(miCounter.getClientes());
         miCounter.eliminarCliente(1213);
         System.out.println(miCounter.getClientes());
-    }
-}
+    
+
 
         
-        /*
         
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+        
         try {
             
-//             Solicitud del web service ******************************************************************************************
+             //Solicitud del web service ******************************************************************************************
             
             Solicitud requestVenta = new Solicitud(
                     "317",           // Indicador tipo de cambio venta
-                    "21/09/2024",    // Fecha de inicio
-                    "21/09/2024",    // Fecha final
+                    "28/10/2024",    // Fecha de inicio
+                    "28/10/2024",    // Fecha final
                     "ajimenezrivera2203@gmail.com", // Correo electrónico
                     "PLENG9P9CI"       // Token de autenticación
             );
-            // Solicitud de compra
+//             Solicitud de compra
             Solicitud requestCompra = new Solicitud(
                     "318",           
-                    "21/09/2024",    
-                    "21/09/2024",    
+                    "28/10/2024",    
+                    "28/10/2024",    
                     "ajimenezrivera2203@gmail.com", 
                     "PLENG9P9CI"      
             );
 
-            // Crear el cliente y enviar la solicitud
+//             Crear el cliente y enviar la solicitud
             HTTPPost client = new HTTPPost();
             
-            // Solicitud tipo de cambio de venta-------------------------------------------------------------------------------
+//             Solicitud tipo de cambio de venta-------------------------------------------------------------------------------
             Respuesta responseVenta = client.enviarSolicitud(requestVenta);
             String tipoDeCambioVenta =responseVenta.getTipoDeCambio();
             String fechaVenta = responseVenta.getFecha();
@@ -88,17 +80,17 @@ public class main {
             System.out.println("Fecha: " + fechaVenta);
             
             
-            // CÁLCULOS VENTA--------------------------------------------------------------------------------------------------
+//             CÁLCULOS VENTA--------------------------------------------------------------------------------------------------
             
             double valorDolares = 100.0; // dólares para convertir
             
-            // Comprobar con tipo de cambio de venta
+//             Comprobar con tipo de cambio de venta
             double tipoDeCambioVentaNum = Double.parseDouble(tipoDeCambioVenta); // Convertir el tipo de cambio a número
             double valorColonesVenta = valorDolares * tipoDeCambioVentaNum;
             System.out.println("100 USD equivale a: " + valorColonesVenta + " en colones." + "\n");
             
             
-            // Solicitud tipo de cambio de compra------------------------------------------------------------------------------
+//             Solicitud tipo de cambio de compra------------------------------------------------------------------------------
             Respuesta responseCompra = client.enviarSolicitud(requestCompra);
             String tipoDeCambioCompra =responseCompra.getTipoDeCambio();
             String fechaCompra = responseCompra.getFecha();
@@ -106,18 +98,17 @@ public class main {
             System.out.println("Tipo de Cambio Compra: " + tipoDeCambioCompra);
             System.out.println("Fecha: " + fechaCompra);
             
-            // CÁLCULOS COMPRA-------------------------------------------------------------------------------------------------
+//             CÁLCULOS COMPRA-------------------------------------------------------------------------------------------------
             
-            // Comprobar con tipo de cambio de compra
+//             Comprobar con tipo de cambio de compra
             double tipoDeCambioCompraNum = Double.parseDouble(tipoDeCambioCompra); // Convertir el tipo de cambio a número
             double valorColonesCompra = valorDolares * tipoDeCambioCompraNum;
             System.out.println("100 USD equivale a: " + valorColonesCompra + " en colones.");
-            
-            System.out.println("El nivel del cliente " + cliente1.getNombre() + " es " + cliente1.getNivel());
             
         } catch (Exception e) {
             e.printStackTrace();
 
         }
-    }*/
-//}
+    }
+}
+

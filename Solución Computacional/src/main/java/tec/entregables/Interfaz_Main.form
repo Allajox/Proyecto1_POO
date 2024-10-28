@@ -1030,9 +1030,18 @@
                                                   </Group>
                                                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="CheckCatalogo" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="LabelRevista" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="SeleccionRevista" min="-2" pref="150" max="-2" attributes="0"/>
+                                                      <Component id="CheckCatalogo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="LabelRevista" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="SeleccionRevista" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                              <Component id="lblCasi" max="32767" attributes="0"/>
+                                                              <Component id="txtNumCasi" max="32767" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
                                                   </Group>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
@@ -1041,7 +1050,7 @@
                                                   <Component id="LabelErrorPaquete" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace min="0" pref="449" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="240" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1062,6 +1071,7 @@
                                       <Component id="LabelSobre" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="LabelPaquete" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="LabelRevista" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblCasi" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -1069,6 +1079,7 @@
                                       <Component id="SpinnerPaquetePeso" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="LabelPeso" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="SeleccionRevista" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtNumCasi" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -1083,7 +1094,7 @@
                                       <Component id="BotonComprobarArticulos" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="LabelErrorPaquete" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="288" max="32767" attributes="0"/>
+                                  <EmptySpace pref="294" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1244,6 +1255,13 @@
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckCatalogoActionPerformed"/>
                           </Events>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="lblCasi">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="N&#xfa;mero del casillero a asignar"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txtNumCasi">
                         </Component>
                       </SubComponents>
                     </Container>
