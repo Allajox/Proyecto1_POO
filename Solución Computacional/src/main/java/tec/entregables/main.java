@@ -1,8 +1,6 @@
 package tec.entregables;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -24,29 +22,19 @@ public class main {
         miCounter.registrarClienteEnCounter("Allan", 1234, "89399320", "allan@gmail.com", true);
         System.out.println(miCounter.buscarCasilleroDisponible());
         miCounter.registrarClienteEnCounter("Pedro", 1213, "82322323", "pedro@gmail.com", true);
-//        for (Casillero casillero : miCounter.getCasilleros()) {
-//            if (casillero.getClienteAsignado() != null){
-//            System.out.println(casillero.toString());
-//            }
-//        }
 //        System.out.println(miCounter.estadoId(1234));
 //        System.out.println(miCounter.estadoId(1213));
-//        System.out.println(miCounter.estadoCasillero(1));
-//        System.out.println(miCounter.estadoCasillero(2));
+//        System.out.println(miCounter.estadoCasillero(1000));
+//        System.out.println(miCounter.estadoCasillero(1001));
         Articulo articulo1 = new Articulo("Laptop", 209132, "Laptop para trabajo", "HP", 2);
         Articulo articulo2 = new Articulo("Revista", 101234, "Revista de moda", "Lbel", 1);
         Articulo articulo3 = new Articulo("Documento", 101314, "Tesis", "TEC", 1);
    
-        miCounter.asignarArticuloRecibidoACasillero(1000, articulo1); 
-        miCounter.asignarArticuloRecibidoACasillero(1000, articulo2); 
-        miCounter.asignarArticuloRecibidoACasillero(1000, articulo3);
+        miCounter.recibirArticulo(1000, articulo1); 
+        miCounter.recibirArticulo(1000, articulo2); 
         
-        miCounter.asignarArticuloRecibidoACasillero(1001, articulo3);
-        miCounter.asignarArticuloRecibidoACasillero(1001, articulo2);
-        
-        miCounter.asignarArticuloEntregadoACasillero(1000, articulo1);
-        miCounter.asignarArticuloEntregadoACasillero(1001, articulo2);
-        miCounter.asignarArticuloEntregadoACasillero(1001, articulo3);
+        miCounter.recibirArticulo(1001, articulo3);
+
         
         System.out.println(miCounter.clientesPaquetesPendientes(miCounter.getCasilleros()));
         
@@ -56,6 +44,11 @@ public class main {
         
         System.out.println(articulo1.getFechaPendiente() + " y " + articulo1.getFechaRecibido() + " y " + articulo1.getFechaEntregado());
 
+        miCounter.retirarArticulo(1000, articulo1);
+        System.out.println("Los artículos entregados de hoy son: " + miCounter.consultarArticulosEntregados(new Date()));
+        
+        System.out.println(miCounter.estadoId(1213));
+        System.out.println(miCounter.estadoCasillero(1000));
     }
 }
 
@@ -64,50 +57,6 @@ public class main {
         
         SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
         try {
-            // Fecha de hoy
-            Date fechaRecibido = sdf.parse("27-09-2024");
-            
-            articulo1.setFechaRecibido(sdf.parse("27-09-2024"));
-            articulo1.setFechaRecibido(sdf.parse("27-09-2024"));
-            articulo2.setFechaRecibido(sdf.parse("27-09-2024"));
-            articulo2.setFechaPendiente(sdf.parse("27-09-2024"));
-            articulo3.setFechaPendiente(sdf.parse("27-09-2024"));
-            articulo3.setFechaPendiente(sdf.parse("27-09-2024"));
-            
-            casillero.agregarArticuloRecibido(cliente1, articulo1, "Recibido");
-            casillero.agregarArticuloRecibido(cliente1, articulo2, "Recibido");
-            casillero.agregarArticuloRecibido(cliente1, articulo3, "Recibido");
-
-            
-            
-            // Consultar los artículos recibidos en una fecha
-            List<Articulo> articulosRecibidosFecha = casillero.consultarArticulosRecibidos(fechaRecibido);
-            System.out.println("Artículos recibidos el " + sdf.format(fechaRecibido) + ":");
-            for (Articulo articulo : articulosRecibidosFecha) {
-                System.out.println(" - " + articulo.toString() + "\n");
-            }
-            
-            // Consultar los artículos entregados en una fecha
-            articulo1.setFechaEntregado(sdf.parse("27-09-2024"));
-            casillero.agregarArticuloEntregado(cliente1, articulo1, "Entregado");
-            casillero2.agregarArticuloEntregado(cliente2, articulo3, "Entregado");
-            List<Articulo> articulosEntregadosFecha = casillero.consultarArticulosEntregados(fechaRecibido);
-            System.out.println("Artículos entregados el " + sdf.format(fechaRecibido) + ":");
-            for (Articulo articulo : articulosEntregadosFecha) {
-                System.out.println(" - " + articulo.toString() + "\n");
-            }
-
-
-            // Consultar los artículos pendientes en una fecha
-            List<Articulo> articulosPendientesFecha = casillero.consultarArticulosPendientes(fechaRecibido);
-            System.out.println("Artículos pendientes el " + sdf.format(fechaRecibido) + ":");
-            for (Articulo articulo : articulosPendientesFecha) {
-                System.out.println(" - " + articulo.toString() + "\n");
-            }
-            
-            System.out.println(cliente1.getNivel());
-            
-            System.out.println(casillero.clientesPaquetesPendientes(counter));
             
 //             Solicitud del web service ******************************************************************************************
             

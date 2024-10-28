@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 public class Counter {
     private String nombre;
@@ -41,10 +42,10 @@ public class Counter {
      * Método que crea los casilleros disponibles en el contador.
      */
     private void crearCasilleros() { 
-    for (int i = 0; i < cantidadCasilleros; i++) {
-        casilleros.add(new Casillero(1000 + i, "Libre")); // crea los casilleros a partir de 1000
+        for (int i = 0; i < cantidadCasilleros; i++) {
+            casilleros.add(new Casillero(1000 + i, "Libre")); // crea los casilleros a partir de 1000
+        }
     }
-}
     
     /**
      * Método que registra un nuevo cliente.
@@ -182,16 +183,16 @@ public class Counter {
     // MÉTODOS PARA ASIGNAR ARTÍCULOS A UN CASILLERO ----------------------------------------------------------------
     
     /**
-     * Método que asigna un artículo como entregado
+     * Método que retira un articulo de un casillero
      * @param numeroCasillero
      * @param articulo 
      */
-    public void asignarArticuloEntregadoACasillero(int numeroCasillero, Articulo articulo) {
+    public void retirarArticulo(int numeroCasillero, Articulo articulo) {
     for (Casillero casillero : casilleros) {
-        if (casillero.getNumeroCasillero() == numeroCasillero && casillero.getEstado().equals("Ocupado")) {// agrega el artículo solo si el casillero está ocupado
+        if (casillero.getNumeroCasillero() == numeroCasillero) {// agrega el artículo solo si el casillero está ocupado
             casillero.agregarArticuloEntregado(articulo); // delega el control a Casillero
             articulo.setFechaEntregado(new Date());
-            System.out.println("Artículo asignado como entregado en el casillero " + numeroCasillero);
+            System.out.println("Artículo retirado: " + articulo);
             return;
         }
     }
@@ -203,7 +204,7 @@ public class Counter {
      * @param numeroCasillero
      * @param articulo 
      */
-    public void asignarArticuloRecibidoACasillero(int numeroCasillero, Articulo articulo) {
+    public void recibirArticulo(int numeroCasillero, Articulo articulo) {
     for (Casillero casillero : casilleros) {
         if (casillero.getNumeroCasillero() == numeroCasillero && casillero.getEstado().equals("Ocupado")) {// agrega el artículo solo si el casillero está ocupado
             casillero.agregarArticuloRecibido(articulo); // delega el control a Casillero
