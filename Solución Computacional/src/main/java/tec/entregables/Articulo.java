@@ -137,6 +137,6 @@ public class Articulo {
 
     @Override
     public String toString() {
-        return "Articulo{" + "nombre=" + nombre + " NumeroReferencia=" + numeroReferencia;
+        return "Articulo{" + "nombre=" + nombre + " NumeroReferencia=" + numeroReferencia + "}";
     }
 }

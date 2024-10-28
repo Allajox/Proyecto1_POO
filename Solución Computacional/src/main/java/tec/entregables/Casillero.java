@@ -1,8 +1,6 @@
 package tec.entregables;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,13 +44,7 @@ public class Casillero {
         }
     }
     
-    /**
-     * Libera el casillero, dejándolo sin cliente.
-     */
-    public void liberarCasillero() {
-        this.clienteAsignado = null;
-        this.estado = "Libre";
-    }
+    
     
     //MÉTODOS DE ARTÍCULOS---------------------------------------------------------------------------------------------------------
     
@@ -88,7 +80,7 @@ public class Casillero {
         this.articulosPendientes.remove(articulo);   // Quita el artículo de pendientes
         articulo.setEstadoArticulo("Entregado");
     }
-
+    
     public int getNumeroCasillero() {
         return numeroCasillero;
     }
@@ -104,7 +96,11 @@ public class Casillero {
     public Cliente getClienteAsignado() {
         return clienteAsignado;
     }
-    
+
+    public void setClienteAsignado(Cliente clienteAsignado) {
+        this.clienteAsignado = clienteAsignado;
+    }
+
     public List<Articulo> getArticulosRecibidos() {
         return articulosRecibidos;
     }
