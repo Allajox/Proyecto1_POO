@@ -39,7 +39,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
         DescripcionMain = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
-        jTabbedPane5 = new javax.swing.JTabbedPane();
+        tabbedConsultas = new javax.swing.JTabbedPane();
         jPanel11 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         TextoCounterNombre = new javax.swing.JTextField();
@@ -51,6 +51,11 @@ public class Interfaz_Main extends javax.swing.JFrame {
         botonCounter = new javax.swing.JButton();
         LabelBotonCrear = new javax.swing.JLabel();
         SeleccionUbicacionCounter = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         PestañaClientes = new javax.swing.JPanel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel14 = new javax.swing.JPanel();
@@ -67,8 +72,8 @@ public class Interfaz_Main extends javax.swing.JFrame {
         BotonNuevoCliente = new javax.swing.JButton();
         TextoCorreo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        TextoIdCasillero = new javax.swing.JTextField();
+        lblClienteNum = new javax.swing.JLabel();
+        TextoIdCliente = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         TextoTelefono = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -78,13 +83,16 @@ public class Interfaz_Main extends javax.swing.JFrame {
         CheckFemenino = new javax.swing.JCheckBox();
         jLabel12 = new javax.swing.JLabel();
         LabelNuevoCliente = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        chooserFechaNac = new com.toedter.calendar.JDateChooser();
         lblBotonCliente = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
-        jTextField5 = new javax.swing.JTextField();
+        txtBorrar = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnBorrarCliente = new javax.swing.JButton();
+        lblResultadoBorrar = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        taDespliegue = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         PestañaArticulos = new javax.swing.JPanel();
         jTabbedPane4 = new javax.swing.JTabbedPane();
@@ -144,7 +152,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
         DescripcionMain.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         DescripcionMain.setName("DescripcionMain"); // NOI18N
 
-        jTabbedPane5.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        tabbedConsultas.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
         jLabel8.setText("Nombre del Counter:");
 
@@ -199,7 +207,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
                             .addGap(65, 65, 65)
                             .addComponent(LabelBotonCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(SeleccionUbicacionCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(729, Short.MAX_VALUE))
+                .addContainerGap(755, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +235,46 @@ public class Interfaz_Main extends javax.swing.JFrame {
                 .addContainerGap(127, Short.MAX_VALUE))
         );
 
-        jTabbedPane5.addTab("Crear", jPanel11);
+        tabbedConsultas.addTab("Crear", jPanel11);
+
+        jLabel4.setText("Estado del casillero por ID:");
+
+        jLabel7.setText("Estado del casillero por número de casillero:");
+
+        jTextField1.setText("jTextField1");
+
+        jTextField2.setText("jTextField2");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(747, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(279, Short.MAX_VALUE))
+        );
+
+        tabbedConsultas.addTab("Consultas", jPanel2);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -235,13 +282,13 @@ public class Interfaz_Main extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane5)
+                .addComponent(tabbedConsultas)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(jTabbedPane5)
+                .addComponent(tabbedConsultas)
                 .addContainerGap())
         );
 
@@ -337,11 +384,11 @@ public class Interfaz_Main extends javax.swing.JFrame {
 
         jLabel6.setText("Correo:");
 
-        jLabel7.setText("Id del Casillero");
+        lblClienteNum.setText("Id del Cliente:");
 
-        TextoIdCasillero.addActionListener(new java.awt.event.ActionListener() {
+        TextoIdCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextoIdCasilleroActionPerformed(evt);
+                TextoIdClienteActionPerformed(evt);
             }
         });
 
@@ -398,8 +445,8 @@ public class Interfaz_Main extends javax.swing.JFrame {
                                         .addComponent(jLabel5)
                                         .addComponent(TextoNombre)
                                         .addComponent(jLabel6)
-                                        .addComponent(jLabel7)
-                                        .addComponent(TextoIdCasillero)
+                                        .addComponent(lblClienteNum)
+                                        .addComponent(TextoIdCliente)
                                         .addComponent(TextoCorreo)
                                         .addComponent(jLabel9)
                                         .addComponent(TextoTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
@@ -413,7 +460,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
                             .addGroup(jPanel13Layout.createSequentialGroup()
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(chooserFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(BotonNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(184, 184, 184)
@@ -426,9 +473,9 @@ public class Interfaz_Main extends javax.swing.JFrame {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel7)
+                .addComponent(lblClienteNum)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextoIdCasillero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextoIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -459,15 +506,15 @@ public class Interfaz_Main extends javax.swing.JFrame {
                         .addComponent(BotonNuevoCliente)
                         .addComponent(LabelNuevoCliente)
                         .addComponent(lblBotonCliente))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chooserFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Nuevo", jPanel13);
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txtBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txtBorrarActionPerformed(evt);
             }
         });
 
@@ -475,7 +522,17 @@ public class Interfaz_Main extends javax.swing.JFrame {
 
         jLabel20.setText("Inserte el id de Cliente");
 
-        jButton2.setText("Borrar");
+        btnBorrarCliente.setText("Borrar");
+        btnBorrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarClienteActionPerformed(evt);
+            }
+        });
+
+        taDespliegue.setEditable(false);
+        taDespliegue.setColumns(20);
+        taDespliegue.setRows(5);
+        jScrollPane1.setViewportView(taDespliegue);
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -484,25 +541,38 @@ public class Interfaz_Main extends javax.swing.JFrame {
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel19)
-                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField5)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnBorrarCliente)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtBorrar))
+                        .addGap(34, 34, 34)
+                        .addComponent(lblResultadoBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(134, 134, 134))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel19)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel20)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel15Layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblResultadoBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBorrarCliente))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Borrar", jPanel15);
@@ -722,7 +792,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
                                 .addComponent(BotonComprobarArticulos)
                                 .addGap(18, 18, 18)
                                 .addComponent(LabelErrorPaquete)))
-                        .addGap(0, 402, Short.MAX_VALUE))))
+                        .addGap(0, 449, Short.MAX_VALUE))))
         );
         PestañaRecepcionLayout.setVerticalGroup(
             PestañaRecepcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1009,30 +1079,28 @@ public class Interfaz_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_TextoDireccionActionPerformed
 
     private void BotonNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonNuevoClienteActionPerformed
-        // TODO add your handling code here:
         lblBotonCliente.setText("");
         String telefono = TextoTelefono.getText();
         String correo = TextoCorreo.getText();
         if (!Validaciones.validarTelefono(telefono) || !Validaciones.validarCorreo(correo)) {
             lblBotonCliente.setText("Hay un error en el correo o telefono");
         }
-        int stoiID = Integer.parseInt(TextoIdCasillero.getText());
-        miCasillero = new Casillero(123,"hola");
+        int stoiID = Integer.parseInt(TextoIdCliente.getText());
         try{
-            miCounter.registrarClienteEnCounter(TextoNombre.getText(),stoiID, TextoTelefono.getText()
-           , TextoCorreo.getText(), CheckFemenino.isSelected());
+            miCounter.registrarClienteEnCounter(TextoNombre.getText(),stoiID, telefono, correo, CheckFemenino.isSelected(), chooserFechaNac.getDate());
+            System.out.println("Clientes en miCounter después de añadir: " + miCounter.getClientes());
             lblBotonCliente.setText("Agregado Correctamente");
         } catch(Exception e) {
-          
-          lblBotonCliente.setText(e.getMessage());
-          System.out.println(e.getMessage());
-          
-        }   
+
+            lblBotonCliente.setText(e.getMessage());
+            System.out.println(e.getMessage());
+
+        }  
     }//GEN-LAST:event_BotonNuevoClienteActionPerformed
 
-    private void TextoIdCasilleroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoIdCasilleroActionPerformed
+    private void TextoIdClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoIdClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextoIdCasilleroActionPerformed
+    }//GEN-LAST:event_TextoIdClienteActionPerformed
 
     private void CheckCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckCatalogoActionPerformed
         // TODO add your handling code here:
@@ -1042,9 +1110,9 @@ public class Interfaz_Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextoCedulaCounterActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txtBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBorrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txtBorrarActionPerformed
 
     private void TextoDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoDestinoActionPerformed
         // TODO add your handling code here:
@@ -1115,12 +1183,49 @@ public class Interfaz_Main extends javax.swing.JFrame {
         //usuario: correopoog40@gmail.com
         //clave: dvnmpgpzgiyyuenf
         String titulo = "Articulos Pendientes";
-        String mensaje = "holahola";
+        
         String destino = TextoDestino.getText();
-        enviarCorreo correo = new enviarCorreo("correopoog40@gmail.com", "dvnmpgpzgiyyuenf", destino, titulo, mensaje); // [inicializar y asignar las variables]
-        String resultado = correo.enviar();
-        LabelCorreo.setText(resultado);
+        for (Casillero casillero : miCounter.getCasilleros()) {
+            if (casillero.getClienteAsignado().getCorreo().equals(destino)) {
+                String mensaje = "Saludos. Tiene artículos pendientes de retirar en el casillero " + casillero.getNumeroCasillero();
+                enviarCorreo correo = new enviarCorreo("correopoog40@gmail.com", "dvnmpgpzgiyyuenf", destino, titulo, mensaje); // [inicializar y asignar las variables]
+                String resultado = correo.enviar();
+                LabelCorreo.setText(resultado);
+            }
+        }
+        
+        
     }//GEN-LAST:event_BotonCorreoActionPerformed
+
+    private void btnBorrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarClienteActionPerformed
+        lblResultadoBorrar.setText("");
+        taDespliegue.setText(miCounter.getClientes().toString());
+        try {
+            int id = Integer.parseInt(txtBorrar.getText());
+            boolean clienteEncontrado = false;
+            System.out.println("Clientes en miCounter después de añadir: " + miCounter.getClientes());
+
+            for (Cliente cliente : miCounter.getClientes()) {
+                if (cliente.getIdCliente() == id) {
+                    miCounter.eliminarCliente(id);
+                    lblResultadoBorrar.setText("Cliente borrado con éxito");
+                    taDespliegue.setText(miCounter.getClientes().toString());
+                    clienteEncontrado = true;
+                    break; // rompe el ciclo al encontrar el cliente
+                }
+            }
+
+            if (!clienteEncontrado) {
+                System.out.println("Clientes en miCounter después de añadir: " + miCounter.getClientes());
+
+                lblResultadoBorrar.setText("Cliente no encontrado");
+            }
+
+        } catch (Exception e) {
+            lblResultadoBorrar.setText("Error: " + e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnBorrarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1201,14 +1306,14 @@ public class Interfaz_Main extends javax.swing.JFrame {
     private javax.swing.JTextField TextoCounterNombre;
     private javax.swing.JTextField TextoDestino;
     private javax.swing.JTextField TextoDireccion;
-    private javax.swing.JTextField TextoIdCasillero;
+    private javax.swing.JTextField TextoIdCliente;
     private javax.swing.JTextField TextoNombre;
     private javax.swing.JTextField TextoRetiro;
     private javax.swing.JTextField TextoTelefono;
     private javax.swing.JButton botonCounter;
+    private javax.swing.JButton btnBorrarCliente;
     private javax.swing.JButton btnConsultar;
-    private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser chooserFechaNac;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1226,6 +1331,7 @@ public class Interfaz_Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1236,14 +1342,21 @@ public class Interfaz_Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblBotonCliente;
+    private javax.swing.JLabel lblClienteNum;
     private javax.swing.JLabel lblResConsulta;
+    private javax.swing.JLabel lblResultadoBorrar;
+    private javax.swing.JTextArea taDespliegue;
+    private javax.swing.JTabbedPane tabbedConsultas;
+    private javax.swing.JTextField txtBorrar;
     private javax.swing.JTextField txtConsulta;
     // End of variables declaration//GEN-END:variables
 }

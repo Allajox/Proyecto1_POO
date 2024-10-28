@@ -7,6 +7,7 @@ package tec.entregables;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,6 +20,7 @@ public class Counter {
     private Casillero casillero;
     private List<Casillero> casilleros;
     private List<Cliente> clientes;
+    private List<Articulo> articulos;
     /**
      * Constructor que inicializa los atributos del contador.
      *
@@ -36,6 +38,7 @@ public class Counter {
         this.casillero = null;
         this.casilleros = new ArrayList<>();
         this.clientes = new ArrayList<>();
+        this.articulos = new ArrayList<>();
         crearCasilleros();
     }
     /**
@@ -58,25 +61,44 @@ public class Counter {
      * @return true si el cliente fue registrado exitosamente, false si hubo errores.
      * @throws Exception si ocurre un error en el registro.
      */
-    public Cliente registrarClienteEnCounter(String nombre, int idCliente, String telefono, String correo, boolean sexo) throws Exception {
+    public Cliente registrarClienteEnCounter(String nombre, int idCliente, String telefono, String correo, boolean sexo, Date fechaNac) throws Exception {
         if (!Validaciones.validarTelefono(telefono) || !Validaciones.validarCorreo(correo)) {
             return null;
         }
-        Cliente cliente1 = new Cliente(nombre, idCliente, telefono, correo, sexo);
-        clientes.add(cliente1);
-        System.out.println("El cliente " + cliente1.getNombre() + " fue registrado.");
-    
+        Cliente cliente1 = new Cliente(nombre, idCliente, telefono, correo, sexo, fechaNac);
+        if (cliente1 != null) {
+            clientes.add(cliente1);
+            System.out.println("El cliente " + cliente1.getNombre() + " fue registrado.");
+        }
+
         // Busca un casillero libre
         for (Casillero casillero1 : casilleros) {
             if (casillero1.getEstado().equals("Libre")) {
                 casillero1.asignarClienteACasillero(cliente1);
                 return cliente1;
             }
-    }
+        }
     
     System.out.println("No hay casilleros disponibles para asignar.");
     return cliente1;
-}
+    }
+    
+    /**
+     * Libera el casillero, dejándolo sin cliente.
+     * @param idCliente
+     */
+    public void eliminarCliente(int idCliente) {
+    Iterator<Cliente> iterador = clientes.iterator(); // se utiliza un iterador porque eliminar algo de un arraylist durante un for da error
+        while (iterador.hasNext()) {
+            Cliente cliente = iterador.next();
+            if (cliente.getIdCliente() == idCliente) {
+                iterador.remove();
+                System.out.println("El cliente " + cliente.getNombre() + " fue eliminado.");
+                return;
+            }
+        }
+        System.out.println("Cliente no encontrado.");
+    }
     
     // CONSULTAS --------------------------------------------------
     
@@ -113,6 +135,7 @@ public class Counter {
                                 "Teléfono: " + cliente1.getTelefono() + "\n" +
                                 "Correo: " + cliente1.getCorreo() + "\n" + 
                                 "Sexo: " + cliente1.getSexo() + "\n" + 
+                                "Fecha de Nacimiento: " + formatearFecha(cliente1.getFechaNac()) + "\n" + 
                                 "Nivel: " + cliente1.getNivel() + "\n" +
                                 "Tiene " + casillero.getArticulosRecibidos().size() + " artículos recibidos, " + "\n" +
                                 casillero.getArticulosEntregados().size() + " artículos entregados y " + "\n" +
@@ -142,6 +165,7 @@ public class Counter {
                                 "Teléfono: " + clienteAsignado.getTelefono() + "\n" +
                                 "Correo: " + clienteAsignado.getCorreo() + "\n" + 
                                 "Sexo: " + clienteAsignado.getSexo() + "\n" + 
+                                "Fecha de Nacimiento: " + formatearFecha(clienteAsignado.getFechaNac()) + "\n" + 
                                 "Nivel: " + clienteAsignado.getNivel() + "\n" +
                                 "Tiene " + casillero1.getArticulosRecibidos().size() + " artículos recibidos, " + "\n" +
                                 casillero1.getArticulosEntregados().size() + " artículos entregados y " + "\n" +
@@ -184,16 +208,21 @@ public class Counter {
     
     /**
      * Método que retira un articulo de un casillero
-     * @param numeroCasillero
-     * @param articulo 
+     * @param numeroCasillero 
+     * @param numeroReferencia 
      */
-    public void retirarArticulo(int numeroCasillero, Articulo articulo) {
+    public void retirarArticulo(int numeroCasillero, int numeroReferencia) {
     for (Casillero casillero : casilleros) {
-        if (casillero.getNumeroCasillero() == numeroCasillero) {// agrega el artículo solo si el casillero está ocupado
-            casillero.agregarArticuloEntregado(articulo); // delega el control a Casillero
-            articulo.setFechaEntregado(new Date());
-            System.out.println("Artículo retirado: " + articulo);
-            return;
+        if (casillero.getNumeroCasillero() == numeroCasillero) {
+            for (Articulo articulo: articulos) {
+                if (numeroReferencia == articulo.getNumeroReferencia()) {
+                    casillero.agregarArticuloEntregado(articulo); // delega el control a Casillero
+                    articulo.setFechaEntregado(new Date());
+                    System.out.println("Artículo retirado: " + articulo);
+                    return;
+                }
+            }
+            
         }
     }
     System.out.println("No se encontró el casillero con número: " + numeroCasillero);
@@ -201,20 +230,24 @@ public class Counter {
     
     /**
      * Método que asigna un artículo como recibido y pendiente
-     * @param numeroCasillero
-     * @param articulo 
+     * @param numeroCasillero 
+     * @param nombre 
+     * @param numeroReferencia 
+     * @param descripcion 
+     * @param remitente 
+     * @param peso 
      */
-    public void recibirArticulo(int numeroCasillero, Articulo articulo) {
-    for (Casillero casillero : casilleros) {
-        if (casillero.getNumeroCasillero() == numeroCasillero && casillero.getEstado().equals("Ocupado")) {// agrega el artículo solo si el casillero está ocupado
-            casillero.agregarArticuloRecibido(articulo); // delega el control a Casillero
-//            System.out.println("Artículo " + articulo.getNombre() + " asignado como recibido en el casillero " + numeroCasillero);
-            casillero.agregarArticuloPendiente(articulo); // delega el control a Casillero
-//            System.out.println("Artículo" + articulo.getNombre() + " asignado como pendiente en el casillero " + numeroCasillero);
-            return;
+    public void recibirArticulo(int numeroCasillero, String nombre, int numeroReferencia, String descripcion, String remitente, double peso) {
+        Articulo articulo = new Articulo(nombre, numeroReferencia, descripcion, remitente, peso);
+        articulos.add(articulo);
+        for (Casillero casillero : casilleros) {
+            if (casillero.getNumeroCasillero() == numeroCasillero && casillero.getEstado().equals("Ocupado")) {// agrega el artículo solo si el casillero está ocupado
+                casillero.agregarArticuloRecibido(articulo); // delega el control a Casillero
+                casillero.agregarArticuloPendiente(articulo); // delega el control a Casillero
+                return;
+            }
         }
-    }
-    System.out.println("No se encontró el casillero con número: " + numeroCasillero);
+        System.out.println("No se encontró el casillero con número: " + numeroCasillero);
     }
     
     
@@ -229,7 +262,6 @@ public class Counter {
      * @return Lista de artículos encontrados en la fecha dada.
      */      
     public List<Articulo> consultarArticulosPorFecha(List<Articulo> articulos, Date fecha, String estado) {
-    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     List<Articulo> articulosFecha = new ArrayList<>();
     
     for (Articulo articulo : articulos) {
@@ -237,16 +269,16 @@ public class Counter {
         String fechaArticulo = "";
         switch (estado) {
             case "Recibido":
-                fechaArticulo = sdf.format(articulo.getFechaRecibido());
-                coincide = fechaArticulo.equals(sdf.format(fecha));
+                fechaArticulo = formatearFecha(articulo.getFechaRecibido());
+                coincide = fechaArticulo.equals(formatearFecha(fecha));
                 break;
             case "Entregado":
-                fechaArticulo = sdf.format(articulo.getFechaEntregado());
-                coincide = fechaArticulo.equals(sdf.format(fecha));
+                fechaArticulo = formatearFecha(articulo.getFechaEntregado());
+                coincide = fechaArticulo.equals(formatearFecha(fecha));
                 break;
             case "Pendiente":
-                fechaArticulo = sdf.format(articulo.getFechaPendiente());
-                coincide = fechaArticulo.equals(sdf.format(fecha));
+                fechaArticulo = formatearFecha(articulo.getFechaPendiente());
+                coincide = fechaArticulo.equals(formatearFecha(fecha));
                 break;
         }
         if (coincide) {
@@ -295,6 +327,10 @@ public class Counter {
         return articulosPendientes;
     }
     
+    public static String formatearFecha(Date unaFecha) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(unaFecha);
+    }
     
     public List<Casillero> getCasilleros() {
         return casilleros;

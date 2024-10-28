@@ -1,7 +1,6 @@
 package tec.entregables;
 
 import java.util.Date;
-import java.util.Scanner;
 
 /**
  *
@@ -19,36 +18,37 @@ public class main {
         // Crea el counter
         Counter miCounter = new Counter("Central", "San José", 5, "220012");
         System.out.println(miCounter.buscarCasilleroDisponible());
-        miCounter.registrarClienteEnCounter("Allan", 1234, "89399320", "allan@gmail.com", true);
+        miCounter.registrarClienteEnCounter("Allan", 1234, "89399320", "allan@gmail.com", true, new Date(2003-1900, 7, 22));
         System.out.println(miCounter.buscarCasilleroDisponible());
-        miCounter.registrarClienteEnCounter("Pedro", 1213, "82322323", "pedro@gmail.com", true);
+        miCounter.registrarClienteEnCounter("Pedro", 1213, "82322323", "pedro@gmail.com", true, new Date(2001-1900, 3, 23));
 //        System.out.println(miCounter.estadoId(1234));
 //        System.out.println(miCounter.estadoId(1213));
 //        System.out.println(miCounter.estadoCasillero(1000));
 //        System.out.println(miCounter.estadoCasillero(1001));
-        Articulo articulo1 = new Articulo("Laptop", 209132, "Laptop para trabajo", "HP", 2);
-        Articulo articulo2 = new Articulo("Revista", 101234, "Revista de moda", "Lbel", 1);
-        Articulo articulo3 = new Articulo("Documento", 101314, "Tesis", "TEC", 1);
+//        Articulo articulo1 = new Articulo("Laptop", 209132, "Laptop para trabajo", "HP", 2);
+//        Articulo articulo2 = new Articulo("Revista", 101234, "Revista de moda", "Lbel", 1);
+//        Articulo articulo3 = new Articulo("Documento", 101314, "Tesis", "TEC", 1);
    
-        miCounter.recibirArticulo(1000, articulo1); 
-        miCounter.recibirArticulo(1000, articulo2); 
+        miCounter.recibirArticulo(1000, "Laptop", 209132, "Laptop para trabajo", "HP", 2); 
+        miCounter.recibirArticulo(1000, "Revista", 101234, "Revista de moda", "Lbel", 1); 
         
-        miCounter.recibirArticulo(1001, articulo3);
+        miCounter.recibirArticulo(1001, "Documento", 101314, "Tesis", "TEC", 1);
 
         
         System.out.println(miCounter.clientesPaquetesPendientes(miCounter.getCasilleros()));
         
-        System.out.println("Los artículos recibidos de hoy son: " + miCounter.consultarArticulosRecibidos(new Date()));
+        System.out.println("Los artículos recibidos son: " + miCounter.consultarArticulosRecibidos(new Date(2024-1900, 9, 28)));
         System.out.println("Los artículos pendientes de hoy son: " + miCounter.consultarArticulosPendientes(new Date()));
         System.out.println("Los artículos entregados de hoy son: " + miCounter.consultarArticulosEntregados(new Date()));
-        
-        System.out.println(articulo1.getFechaPendiente() + " y " + articulo1.getFechaRecibido() + " y " + articulo1.getFechaEntregado());
 
-        miCounter.retirarArticulo(1000, articulo1);
+        miCounter.retirarArticulo(1000, 209132);
         System.out.println("Los artículos entregados de hoy son: " + miCounter.consultarArticulosEntregados(new Date()));
         
         System.out.println(miCounter.estadoId(1213));
         System.out.println(miCounter.estadoCasillero(1000));
+        System.out.println(miCounter.getClientes());
+        miCounter.eliminarCliente(1213);
+        System.out.println(miCounter.getClientes());
     }
 }
 
